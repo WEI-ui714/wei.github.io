@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>暐式科技 Weishi Defender | T-800 MAX</title>
+    <meta name="description" content="暐式科技 - Discord 社群安全防禦系統 V2.0 (旗艦版) T-800 MAX">
+    <style>
+        :root {
+            --bg-dark: #0b0d10;
+            --bg-card: #161920;
+            --primary: #00ffc3;     /* 暐式科技 經典青 */
+            --accent: #00b894;
+            --text-main: #ffffff;
+            --text-sub: #a0a0a0;
+            --gradient: linear-gradient(135deg, #00ffc3 0%, #00b894 100%);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Noto Sans TC', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- 共用元件 --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: var(--gradient);
+            color: #000;
+            box-shadow: 0 0 15px rgba(0, 255, 195, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 25px rgba(0, 255, 195, 0.6);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            margin-left: 15px;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* --- Header / Hero --- */
+        header {
+            padding: 150px 0 80px;
+            text-align: center;
+            background: radial-gradient(circle at center, #1a202c 0%, var(--bg-dark) 70%);
+            position: relative;
+        }
+
+        .hero-badge {
+            background: rgba(0, 255, 195, 0.1);
+            color: var(--primary);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            border: 1px solid var(--primary);
+            display: inline-block;
+            margin-bottom: 20px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(0, 255, 195, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(0, 255, 195, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 255, 195, 0); }
+        }
+
+        header h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            background: -webkit-linear-gradient(#fff, #a0a0a0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p {
+            font-size: 1.5rem;
+            color: var(--text-sub);
+            max-width: 700px;
+            margin: 0 auto 3rem;
+        }
+
+        /* --- Video Section (New!) --- */
+        .video-section {
+            padding-bottom: 60px;
+            text-align: center;
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            max-width: 900px;
+            margin: 0 auto;
+            border: 2px solid var(--primary);
+            border-radius: 12px;
+            box-shadow: 0 0 40px rgba(0, 255, 195, 0.15);
+            background: #000;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* --- Stats --- */
+        .stats-bar {
+            background: var(--bg-card);
+            padding: 40px 0;
+            border-top: 1px solid #333;
+            border-bottom: 1px solid #333;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        .stat-item p {
+            color: var(--text-sub);
+            font-size: 1rem;
+        }
+
+        /* --- Features --- */
+        .features {
+            padding: 80px 0;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: var(--bg-card);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid #2a2a2a;
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+
+        .feature-card p {
+            color: var(--text-sub);
+        }
+
+        /* --- Why Us --- */
+        .why-us {
+            padding: 80px 0;
+            background: #111;
+        }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+        }
+
+        .why-card {
+            background: linear-gradient(145deg, #1e232e, #161920);
+            padding: 25px;
+            border-radius: 12px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .why-card h3 {
+            color: #fff;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* --- FAQ --- */
+        .faq {
+            padding: 80px 0;
+        }
+
+        details {
+            background: var(--bg-card);
+            margin-bottom: 15px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        summary {
+            padding: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        summary:hover {
+            background: #252a35;
+        }
+
+        summary::after {
+            content: '+';
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+        details[open] summary::after {
+            content: '-';
+        }
+
+        .faq-content {
+            padding: 20px;
+            border-top: 1px solid #333;
+            color: var(--text-sub);
+        }
+
+        /* --- Footer --- */
+        footer {
+            background: #050505;
+            padding: 50px 0;
+            text-align: center;
+            border-top: 1px solid #222;
+            color: #666;
+        }
+
+        .footer-logo {
+            font-size: 1.5rem;
+            color: #fff;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .system-info {
+            font-family: monospace;
+            background: #111;
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 4px;
+            margin-top: 20px;
+            color: var(--primary);
+            border: 1px solid #333;
+        }
+
+        @media (max-width: 768px) {
+            header h1 { font-size: 2.5rem; }
+            .btn { display: block; margin: 10px auto; width: 80%; text-align: center; }
+            .btn-secondary { margin-left: auto; }
+            .stats-grid { grid-template-columns: 1fr 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <span class="hero-badge">系統狀態：穩定運作中 🟢</span>
+            <h1>暐式科技 Weishi Technology</h1>
+            <p>一款強大且易於使用的 Discord 防炸群機器人<br>致力於維護您社群的安全</p>
+            
+            <div class="cta-group">
+                <a href="https://discord.com/oauth2/authorize?client_id=1393566473816903713&permissions=8&integration_type=0&scope=bot+applications.commands" class="btn btn-primary" target="_blank">
+                    🔗 立即邀請機器人
+                </a>
+                <a href="https://discord.gg/7JCYsjVwE4" class="btn btn-secondary" target="_blank">
+                    💬 加入支援伺服器
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <section class="video-section">
+        <div class="container">
+            <div class="video-wrapper">
+                <iframe src="https://www.youtube.com/embed/EtOSWGumPDo" title="Weishi Defender Promo Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <p style="margin-top: 15px; color: var(--primary); letter-spacing: 1px;">▲ 觀看 V2.0 實戰演示</p>
+        </div>
+    </section>
+
+    <div class="stats-bar">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h3>3+</h3>
+                    <p>保護的伺服器</p>
+                </div>
+                <div class="stat-item">
+                    <h3>34+</h3>
+                    <p>保護的使用者</p>
+                </div>
+                <div class="stat-item">
+                    <h3>92.1%</h3>
+                    <p>成功防禦率</p>
+                </div>
+                <div class="stat-item">
+                    <h3>24/7</h3>
+                    <p>在線時間</p>
+                </div>
+                <div class="stat-item">
+                    <h3>40+</h3>
+                    <p>已攔截攻擊</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="features">
+        <div class="container">
+            <h2>核心防禦特色</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <span class="feature-icon">🤖</span>
+                    <h3>炸群機器人防禦</h3>
+                    <p>即時偵測並封鎖惡意的 Raid-Bot 帳號，防止大規模的成員加入攻擊。</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">🔗</span>
+                    <h3>炸群 Webhook 防禦</h3>
+                    <p>監控並攔截濫用 Webhook 進行的垃圾訊息轟炸，保持頻道清潔。</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">👤</span>
+                    <h3>SelfBot 防禦</h3>
+                    <p>辨識並處理自動化使用者帳號 (Self-Bot) 的惡意行為，預防潛在威脅。</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">🛡️</span>
+                    <h3>User Install 防禦</h3>
+                    <p>防止使用者安裝惡意應用程式或腳本，從源頭杜絕安全漏洞。</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">🎛️</span>
+                    <h3>簡易化的面板</h3>
+                    <p>提供直觀的指令與訊息面板，讓您輕鬆管理所有設定，無需複雜操作。</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">⚡</span>
+                    <h3>24/7 不斷線</h3>
+                    <p>全年無休的穩定運行，確保您的伺服器隨時受到保護。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="why-us">
+        <div class="container">
+            <h2>為什麼選擇 Weishi Defender?</h2>
+            <div class="why-grid">
+                <div class="why-card">
+                    <h3>🔐 多層防禦引擎</h3>
+                    <p>整合反惡意連結、防詐騙、防炸群與行為分析，專為 Discord 高風險環境設計。</p>
+                </div>
+                <div class="why-card">
+                    <h3>🤖 T-800 智能模型</h3>
+                    <p>以行為節奏與上下文推理判斷威脅，不單純依賴關鍵字，大幅降低誤判率。</p>
+                </div>
+                <div class="why-card">
+                    <h3>📊 全盤安全掃描</h3>
+                    <p>一鍵分析伺服器成員、權限結構與風險因子，產生安全指數與風險等級報告。</p>
+                </div>
+                <div class="why-card">
+                    <h3>🚨 恐慌模式 (Panic Mode)</h3>
+                    <p>面對大規模攻擊時，可一鍵鎖定伺服器，自動踢除所有新進成員。</p>
+                </div>
+                <div class="why-card">
+                    <h3>🧠 案例與違規記憶</h3>
+                    <p>獨家三振出局懲戒系統，完整記錄違規行為，兼顧教育與威嚇。</p>
+                </div>
+                <div class="why-card">
+                    <h3>🌐 台灣社群導向</h3>
+                    <p>繁體中文介面、在地詐騙樣態規則庫，為台灣 Discord 社群量身打造。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq">
+        <div class="container">
+            <h2>常見問題</h2>
+            
+            <details>
+                <summary>暐式科技是免費的嗎？</summary>
+                <div class="faq-content">
+                    是的，目前 Weishi Defender 的核心防護功能皆為免費提供給所有社群使用。
+                </div>
+            </details>
+
+            <details>
+                <summary>如何將 暐式科技 加入我的伺服器？</summary>
+                <div class="faq-content">
+                    點擊網頁上方的「立即邀請機器人」按鈕，選擇您的伺服器並授權管理員權限即可。
+                </div>
+            </details>
+
+            <details>
+                <summary>暐式科技 如何偵測炸群行為？</summary>
+                <div class="faq-content">
+                    我們採用混合偵測技術，包含每秒訊息頻率監控、大量標註偵測 (Mass Mention)、以及 T-800 模型的行為分析。
+                </div>
+            </details>
+
+            <details>
+                <summary>我需要進行複雜的設定嗎？</summary>
+                <div class="faq-content">
+                    不需要。機器人加入後會自動套用「V2.0 預設防護配置」，您也可以透過指令簡單開關特定功能。
+                </div>
+            </details>
+
+            <details>
+                <summary>為什麼選擇暐式科技？</summary>
+                <div class="faq-content">
+                    我們專注於「低誤判、高響應」，並且擁有針對台灣社群特化的反詐騙與反釣魚資料庫。
+                </div>
+            </details>
+
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <span class="footer-logo">🛡️ 暐式科技 Weishi Technology</span>
+            <p>技術的終極價值，是守護每個人的數位家園</p>
+            
+            <div class="system-info">
+                系統名稱：Weishi Defender ARXos<br>
+                版本：V2.0 (旗艦版) T-800 MAX
+            </div>
+
+            <p style="margin-top: 20px; font-size: 0.9rem;">
+                © 2025 暐式科技 Weishi Technology. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>
