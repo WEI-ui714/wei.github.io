@@ -3,99 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>暐式科技 Weishi Defender | T-800 MAX</title>
-    <meta name="description" content="暐式科技 - Discord 社群安全防禦系統 V2.0 (旗艦版) T-800 MAX">
+    <title>暐式科技 Weishi Defender | V2.0 旗艦版</title>
+    <meta name="google-site-verification" content="google2c251c92406ff80a.html" />
+    
     <style>
+        /* --- T-800 核心樣式變數 --- */
         :root {
-            --bg-dark: #0b0d10;
-            --bg-card: #161920;
-            --primary: #00ffc3;     /* 暐式科技 經典青 */
-            --accent: #00b894;
-            --text-main: #ffffff;
-            --text-sub: #a0a0a0;
-            --gradient: linear-gradient(135deg, #00ffc3 0%, #00b894 100%);
+            --primary: #00ffc3;
+            --secondary: #00b894;
+            --bg: #0b0d10;
+            --card-bg: #161920;
+            --text: #e0e0e0;
+            --heading: #ffffff;
+            --accent-glow: 0 0 20px rgba(0, 255, 195, 0.2);
         }
 
-        * {
-            box-sizing: border-box;
+        /* --- 全局設定 --- */
+        body {
+            font-family: 'Segoe UI', 'Microsoft JhengHei', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
             margin: 0;
             padding: 0;
-        }
-
-        body {
-            font-family: 'Segoe UI', 'Noto Sans TC', sans-serif;
-            background-color: var(--bg-dark);
-            color: var(--text-main);
             line-height: 1.6;
             overflow-x: hidden;
         }
 
-        /* --- 共用元件 --- */
+        a { text-decoration: none; color: inherit; }
+        
+        /* --- 容器 --- */
         .container {
-            max-width: 1200px;
+            max-width: 1100px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 20px;
         }
 
-        h2 {
-            font-size: 2.5rem;
-            text-align: center;
-            margin-bottom: 3rem;
-            color: var(--primary);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 12px 30px;
-            border-radius: 50px;
-            font-weight: bold;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            font-size: 1.1rem;
-            cursor: pointer;
-        }
-
-        .btn-primary {
-            background: var(--gradient);
-            color: #000;
-            box-shadow: 0 0 15px rgba(0, 255, 195, 0.4);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 0 25px rgba(0, 255, 195, 0.6);
-        }
-
-        .btn-secondary {
-            background: rgba(255, 255, 255, 0.1);
-            color: #fff;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            margin-left: 15px;
-        }
-
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        /* --- Header / Hero --- */
+        /* --- 頂部導航與 Hero 區塊 --- */
         header {
-            padding: 150px 0 80px;
             text-align: center;
-            background: radial-gradient(circle at center, #1a202c 0%, var(--bg-dark) 70%);
-            position: relative;
+            padding: 80px 20px 60px;
+            background: radial-gradient(circle at center, #1a202c 0%, var(--bg) 70%);
+            border-bottom: 1px solid #222;
         }
 
-        .hero-badge {
+        .status-badge {
             background: rgba(0, 255, 195, 0.1);
             color: var(--primary);
+            border: 1px solid var(--primary);
             padding: 5px 15px;
             border-radius: 20px;
             font-size: 0.9rem;
-            border: 1px solid var(--primary);
             display: inline-block;
             margin-bottom: 20px;
+            font-weight: bold;
+            box-shadow: var(--accent-glow);
             animation: pulse 2s infinite;
         }
 
@@ -105,41 +66,113 @@
             100% { box-shadow: 0 0 0 0 rgba(0, 255, 195, 0); }
         }
 
-        header h1 {
-            font-size: 4rem;
-            margin-bottom: 1rem;
-            background: -webkit-linear-gradient(#fff, #a0a0a0);
+        h1 {
+            font-size: 3.5rem;
+            margin: 10px 0;
+            background: linear-gradient(to right, #fff, #b2dfdb);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            font-weight: 800;
         }
 
-        header p {
-            font-size: 1.5rem;
-            color: var(--text-sub);
+        .subtitle {
+            font-size: 1.2rem;
+            color: #888;
             max-width: 700px;
-            margin: 0 auto 3rem;
+            margin: 0 auto 30px;
         }
 
-        /* --- Video Section (New!) --- */
+        /* --- 按鈕樣式 --- */
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 15px 35px;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: #000;
+            box-shadow: 0 4px 15px rgba(0, 255, 195, 0.3);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 6px 25px rgba(0, 255, 195, 0.5);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: #fff;
+        }
+
+        /* --- 數據統計列 --- */
+        .stats-bar {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            background: #111;
+            padding: 30px 0;
+            border-top: 1px solid #222;
+            border-bottom: 1px solid #222;
+            margin-top: 40px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 15px;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            display: block;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* --- 影片區塊 --- */
         .video-section {
-            padding-bottom: 60px;
+            padding: 60px 20px;
             text-align: center;
         }
-
-        .video-wrapper {
+        .video-box {
             position: relative;
-            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
             height: 0;
             overflow: hidden;
             max-width: 900px;
-            margin: 0 auto;
-            border: 2px solid var(--primary);
-            border-radius: 12px;
-            box-shadow: 0 0 40px rgba(0, 255, 195, 0.15);
-            background: #000;
+            margin: 30px auto;
+            border-radius: 15px;
+            border: 2px solid #333;
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
         }
-
-        .video-wrapper iframe {
+        .video-box iframe {
             position: absolute;
             top: 0;
             left: 0;
@@ -147,353 +180,304 @@
             height: 100%;
         }
 
-        /* --- Stats --- */
-        .stats-bar {
-            background: var(--bg-card);
-            padding: 40px 0;
-            border-top: 1px solid #333;
-            border-bottom: 1px solid #333;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
+        /* --- 功能卡片網格 --- */
+        .section-title {
             text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 50px;
+            color: var(--heading);
+        }
+        
+        .section-title span {
+            border-bottom: 3px solid var(--primary);
+            padding-bottom: 10px;
         }
 
-        .stat-item h3 {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 5px;
-        }
-
-        .stat-item p {
-            color: var(--text-sub);
-            font-size: 1rem;
-        }
-
-        /* --- Features --- */
-        .features {
-            padding: 80px 0;
-        }
-
-        .feature-grid {
+        .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 80px;
         }
 
-        .feature-card {
-            background: var(--bg-card);
+        .card {
+            background: var(--card-bg);
             padding: 30px;
             border-radius: 15px;
-            border: 1px solid #2a2a2a;
-            transition: transform 0.3s;
+            border: 1px solid #2d3748;
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
         }
 
-        .feature-card:hover {
-            transform: translateY(-5px);
+        .card:hover {
+            transform: translateY(-10px);
             border-color: var(--primary);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
-        .feature-icon {
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--primary);
+            opacity: 0;
+            transition: 0.3s;
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        .card-icon {
             font-size: 2.5rem;
             margin-bottom: 20px;
             display: block;
         }
 
-        .feature-card h3 {
-            margin-bottom: 15px;
+        .card h3 {
+            margin-top: 0;
+            color: #fff;
             font-size: 1.4rem;
         }
 
-        .feature-card p {
-            color: var(--text-sub);
+        .card p {
+            color: #aaa;
+            font-size: 0.95rem;
         }
 
-        /* --- Why Us --- */
-        .why-us {
-            padding: 80px 0;
-            background: #111;
-        }
-
-        .why-grid {
+        /* --- 為什麼選擇我們 & FAQ --- */
+        .faq-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 25px;
+            gap: 20px;
         }
 
-        .why-card {
-            background: linear-gradient(145deg, #1e232e, #161920);
-            padding: 25px;
-            border-radius: 12px;
-            border-left: 4px solid var(--primary);
-        }
-
-        .why-card h3 {
-            color: #fff;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        /* --- FAQ --- */
-        .faq {
-            padding: 80px 0;
-        }
-
-        details {
-            background: var(--bg-card);
-            margin-bottom: 15px;
-            border-radius: 8px;
-            overflow: hidden;
-        }
-
-        summary {
+        .faq-item {
+            background: #1a1d24;
             padding: 20px;
-            cursor: pointer;
+            border-radius: 10px;
+            border-left: 4px solid #444;
+        }
+        
+        .faq-item:hover {
+            border-left-color: var(--primary);
+        }
+
+        .faq-q {
             font-weight: bold;
-            list-style: none;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            color: #fff;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            display: block;
         }
-
-        summary:hover {
-            background: #252a35;
-        }
-
-        summary::after {
-            content: '+';
-            font-size: 1.5rem;
-            color: var(--primary);
-        }
-
-        details[open] summary::after {
-            content: '-';
-        }
-
-        .faq-content {
-            padding: 20px;
-            border-top: 1px solid #333;
-            color: var(--text-sub);
+        
+        .faq-a {
+            color: #bbb;
         }
 
         /* --- Footer --- */
         footer {
-            background: #050505;
-            padding: 50px 0;
-            text-align: center;
+            background: #050608;
             border-top: 1px solid #222;
+            padding: 60px 20px;
+            text-align: center;
+            font-size: 0.9rem;
             color: #666;
         }
-
-        .footer-logo {
-            font-size: 1.5rem;
-            color: #fff;
-            margin-bottom: 10px;
-            display: block;
+        
+        .dev-info {
+            margin-bottom: 20px;
+        }
+        
+        .dev-info span {
+            color: #888;
+            margin: 0 10px;
         }
 
-        .system-info {
-            font-family: monospace;
-            background: #111;
-            display: inline-block;
-            padding: 5px 15px;
+        .tech-stack {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background: #222;
+            padding: 4px 12px;
             border-radius: 4px;
-            margin-top: 20px;
-            color: var(--primary);
-            border: 1px solid #333;
+            font-size: 0.8rem;
+            color: #aaa;
         }
 
+        /* --- 手機版調整 --- */
         @media (max-width: 768px) {
-            header h1 { font-size: 2.5rem; }
-            .btn { display: block; margin: 10px auto; width: 80%; text-align: center; }
-            .btn-secondary { margin-left: auto; }
-            .stats-grid { grid-template-columns: 1fr 1fr; }
+            h1 { font-size: 2.2rem; }
+            .stats-bar { flex-direction: column; gap: 30px; }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="container">
-            <span class="hero-badge">系統狀態：穩定運作中 🟢</span>
-            <h1>暐式科技 Weishi Technology</h1>
-            <p>一款強大且易於使用的 Discord 防炸群機器人<br>致力於維護您社群的安全</p>
-            
-            <div class="cta-group">
-                <a href="https://discord.com/oauth2/authorize?client_id=1393566473816903713&permissions=8&integration_type=0&scope=bot+applications.commands" class="btn btn-primary" target="_blank">
-                    🔗 立即邀請機器人
-                </a>
-                <a href="https://discord.gg/7JCYsjVwE4" class="btn btn-secondary" target="_blank">
-                    💬 加入支援伺服器
-                </a>
-            </div>
+        <div class="status-badge">系統狀態：穩定運作中 🟢</div>
+        <h1>暐式科技 Weishi Technology</h1>
+        <p class="subtitle">致力於維護您社群的安全 · 靜默守護，攻堅止步</p>
+        
+        <div class="btn-group">
+            <a href="https://discord.com/oauth2/authorize?client_id=1393566473816903713&permissions=8&integration_type=0&scope=bot+applications.commands" class="btn btn-primary" target="_blank">
+                🔗 立即邀請機器人
+            </a>
+            <a href="https://discord.gg/7JCYsjVwE4" class="btn btn-secondary" target="_blank">
+                💬 加入支援伺服器 (WRC暐暐共和國)
+            </a>
         </div>
     </header>
 
-    <section class="video-section">
-        <div class="container">
-            <div class="video-wrapper">
-                <iframe src="https://www.youtube.com/embed/EtOSWGumPDo" title="Weishi Defender Promo Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-            <p style="margin-top: 15px; color: var(--primary); letter-spacing: 1px;">▲ 觀看 V2.0 實戰演示</p>
-        </div>
-    </section>
-
     <div class="stats-bar">
-        <div class="container">
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <h3>3+</h3>
-                    <p>保護的伺服器</p>
-                </div>
-                <div class="stat-item">
-                    <h3>34+</h3>
-                    <p>保護的使用者</p>
-                </div>
-                <div class="stat-item">
-                    <h3>92.1%</h3>
-                    <p>成功防禦率</p>
-                </div>
-                <div class="stat-item">
-                    <h3>24/7</h3>
-                    <p>在線時間</p>
-                </div>
-                <div class="stat-item">
-                    <h3>40+</h3>
-                    <p>已攔截攻擊</p>
-                </div>
-            </div>
+        <div class="stat-item">
+            <span class="stat-number">4+</span>
+            <span class="stat-label">保護的伺服器</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-number">38+</span>
+            <span class="stat-label">保護的使用者</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-number">92.1%</span>
+            <span class="stat-label">成功防禦率</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-number">51+</span>
+            <span class="stat-label">已攔截攻擊</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-number">24/7</span>
+            <span class="stat-label">在線時間</span>
         </div>
     </div>
 
-    <section class="features">
-        <div class="container">
-            <h2>核心防禦特色</h2>
-            <div class="feature-grid">
-                <div class="feature-card">
-                    <span class="feature-icon">🤖</span>
+    <div class="container">
+        <section class="video-section">
+            <h2 class="section-title"><span>V2.0 影片介紹</span></h2>
+            <div class="video-box">
+                <iframe src="https://www.youtube.com/embed/EtOSWGumPDo" title="Weishi Defender Demo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </section>
+
+        <section id="features">
+            <h2 class="section-title"><span>核心防禦特色</span></h2>
+            <div class="grid">
+                <div class="card">
+                    <span class="card-icon">🤖</span>
                     <h3>炸群機器人防禦</h3>
                     <p>即時偵測並封鎖惡意的 Raid-Bot 帳號，防止大規模的成員加入攻擊。</p>
                 </div>
-                <div class="feature-card">
-                    <span class="feature-icon">🔗</span>
+                <div class="card">
+                    <span class="card-icon">🔗</span>
                     <h3>炸群 Webhook 防禦</h3>
                     <p>監控並攔截濫用 Webhook 進行的垃圾訊息轟炸，保持頻道清潔。</p>
                 </div>
-                <div class="feature-card">
-                    <span class="feature-icon">👤</span>
+                <div class="card">
+                    <span class="card-icon">👤</span>
                     <h3>SelfBot 防禦</h3>
                     <p>辨識並處理自動化使用者帳號 (Self-Bot) 的惡意行為，預防潛在威脅。</p>
                 </div>
-                <div class="feature-card">
-                    <span class="feature-icon">🛡️</span>
+                <div class="card">
+                    <span class="card-icon">🛡️</span>
                     <h3>User Install 防禦</h3>
                     <p>防止使用者安裝惡意應用程式或腳本，從源頭杜絕安全漏洞。</p>
                 </div>
-                <div class="feature-card">
-                    <span class="feature-icon">🎛️</span>
+                <div class="card">
+                    <span class="card-icon">🎛️</span>
                     <h3>簡易化的面板</h3>
                     <p>提供直觀的指令與訊息面板，讓您輕鬆管理所有設定，無需複雜操作。</p>
                 </div>
-                <div class="feature-card">
-                    <span class="feature-icon">⚡</span>
+                <div class="card">
+                    <span class="card-icon">⏰</span>
                     <h3>24/7 不斷線</h3>
                     <p>全年無休的穩定運行，確保您的伺服器隨時受到保護。</p>
                 </div>
+                <div class="card">
+                    <span class="card-icon">🔄</span>
+                    <h3>恢復頻道</h3>
+                    <p>受夠了被機器人攻擊後恢復秩序的工作？這裡歡迎您！</p>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="why-us">
-        <div class="container">
-            <h2>為什麼選擇 Weishi Defender?</h2>
-            <div class="why-grid">
-                <div class="why-card">
+        <section id="why">
+            <h2 class="section-title"><span>為什麼選擇 Weishi Defender?</span></h2>
+            <div class="grid">
+                <div class="card">
                     <h3>🔐 多層防禦引擎</h3>
                     <p>整合反惡意連結、防詐騙、防炸群與行為分析，專為 Discord 高風險環境設計。</p>
                 </div>
-                <div class="why-card">
+                <div class="card">
                     <h3>🤖 T-800 智能模型</h3>
                     <p>以行為節奏與上下文推理判斷威脅，不單純依賴關鍵字，大幅降低誤判率。</p>
                 </div>
-                <div class="why-card">
+                <div class="card">
                     <h3>📊 全盤安全掃描</h3>
                     <p>一鍵分析伺服器成員、權限結構與風險因子，產生安全指數與風險等級報告。</p>
                 </div>
-                <div class="why-card">
+                <div class="card">
                     <h3>🚨 恐慌模式 (Panic Mode)</h3>
                     <p>面對大規模攻擊時，可一鍵鎖定伺服器，自動踢除所有新進成員。</p>
                 </div>
-                <div class="why-card">
-                    <h3>🧠 案例與違規記憶</h3>
+                <div class="card">
+                    <h3>⚔ 案例與違規記憶</h3>
                     <p>獨家三振出局懲戒系統，完整記錄違規行為，兼顧教育與威嚇。</p>
                 </div>
-                <div class="why-card">
+                <div class="card">
                     <h3>🌐 台灣社群導向</h3>
                     <p>繁體中文介面、在地詐騙樣態規則庫，為台灣 Discord 社群量身打造。</p>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="faq">
-        <div class="container">
-            <h2>常見問題</h2>
-            
-            <details>
-                <summary>暐式科技是免費的嗎？</summary>
-                <div class="faq-content">
-                    是的，目前 Weishi Defender 的核心防護功能皆為免費提供給所有社群使用。
+        <section id="faq">
+            <h2 class="section-title"><span>常見問題</span></h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <span class="faq-q">Q: 暐式科技是免費的嗎？</span>
+                    <span class="faq-a">是的，目前 Weishi Defender 的核心防護功能皆為免費提供給所有社群使用。</span>
                 </div>
-            </details>
-
-            <details>
-                <summary>如何將 暐式科技 加入我的伺服器？</summary>
-                <div class="faq-content">
-                    點擊網頁上方的「立即邀請機器人」按鈕，選擇您的伺服器並授權管理員權限即可。
+                <div class="faq-item">
+                    <span class="faq-q">Q: 如何將 暐式科技 加入我的伺服器？</span>
+                    <span class="faq-a">點擊網頁上方的「立即邀請機器人」按鈕，選擇您的伺服器並授權管理員權限即可。</span>
                 </div>
-            </details>
-
-            <details>
-                <summary>暐式科技 如何偵測炸群行為？</summary>
-                <div class="faq-content">
-                    我們採用混合偵測技術，包含每秒訊息頻率監控、大量標註偵測 (Mass Mention)、以及 T-800 模型的行為分析。
+                <div class="faq-item">
+                    <span class="faq-q">Q: 暐式科技 如何偵測炸群行為？</span>
+                    <span class="faq-a">我們採用混合偵測技術，包含每秒訊息頻率監控、大量標註偵測 (Mass Mention)、以及 T-800 模型的行為分析。</span>
                 </div>
-            </details>
-
-            <details>
-                <summary>我需要進行複雜的設定嗎？</summary>
-                <div class="faq-content">
-                    不需要。機器人加入後會自動套用「V2.0 預設防護配置」，您也可以透過指令簡單開關特定功能。
+                <div class="faq-item">
+                    <span class="faq-q">Q: 我需要進行複雜的設定嗎？</span>
+                    <span class="faq-a">不需要。機器人加入後會自動套用「V2.0 預設防護配置」，您也可以透過指令簡單開關特定功能。</span>
                 </div>
-            </details>
-
-            <details>
-                <summary>為什麼選擇暐式科技？</summary>
-                <div class="faq-content">
-                    我們專注於「低誤判、高響應」，並且擁有針對台灣社群特化的反詐騙與反釣魚資料庫。
-                </div>
-            </details>
-
-        </div>
-    </section>
+            </div>
+        </section>
+    </div>
 
     <footer>
         <div class="container">
-            <span class="footer-logo">🛡️ 暐式科技 Weishi Technology</span>
-            <p>技術的終極價值，是守護每個人的數位家園</p>
-            
-            <div class="system-info">
-                系統名稱：Weishi Defender ARXos<br>
-                版本：V2.0 (旗艦版) T-800 MAX
+            <div class="tech-stack">
+                <span class="tag">Language: Python</span>
+                <span class="tag">Library: discord.py</span>
+                <span class="tag">Framework: GitHub Pages</span>
             </div>
 
-            <p style="margin-top: 20px; font-size: 0.9rem;">
+            <div class="dev-info">
+                <strong>開發團隊 Credits</strong><br><br>
+                <span>機器人開發設定: WRC_暐暐c9c (官方)</span><br>
+                <span>網頁設計/開發: WRC_暐暐c9c (官方)</span><br>
+            </div>
+
+            <p style="margin-top: 30px; opacity: 0.5;">
+                系統名稱：Weishi Defender V2.0 (旗艦版) T-800 MAX<br>
                 © 2025 暐式科技 Weishi Technology. All rights reserved.
             </p>
         </div>
