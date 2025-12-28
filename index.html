@@ -9,13 +9,13 @@
     <style>
         /* --- T-800 核心視覺變數 --- */
         :root {
-            --primary: #00d2ff;       /* 核心霓虹綠 (也可改為科技藍 #00d2ff) */
-            --primary-dim: rgba(0, 255, 195, 0.1);
-            --bg: #0b0d10;            /* 深色背景 */
-            --card-bg: #161920;       /* 卡片背景 */
-            --text: #e0e0e0;          /* 主要文字 */
-            --text-muted: #8892b0;    /* 次要文字 */
-            --accent-glow: 0 0 20px rgba(0, 255, 195, 0.2);
+            --primary: #00d2ff;       /* 科技藍 */
+            --primary-dim: rgba(0, 210, 255, 0.1);
+            --bg: #050810;            /* 深空黑 */
+            --card-bg: rgba(22, 25, 32, 0.7); /* 卡片半透明 */
+            --text: #e0e0e0;
+            --text-muted: #8892b0;
+            --accent-glow: 0 0 20px rgba(0, 210, 255, 0.4);
         }
 
         /* --- 全局設定 --- */
@@ -27,7 +27,78 @@
             padding: 0;
             line-height: 1.7;
             overflow-x: hidden;
+            min-height: 100vh;
         }
+
+        /* =========================================
+           🚀 動態深空背景核心代碼 (CSS Parallax Stars)
+           ========================================= */
+        
+        /* 星空容器：固定在背後，不隨網頁滾動 */
+        #star-container {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to bottom, #020305 0%, #050810 100%);
+            z-index: -1; /* 確保在內容後方 */
+            overflow: hidden;
+        }
+
+        /* 定義三種星星的大小與動畫速度 */
+        .stars-1 { width: 1px; height: 1px; background: transparent; animation: animStar 50s linear infinite; }
+        .stars-2 { width: 2px; height: 2px; background: transparent; animation: animStar 100s linear infinite; }
+        .stars-3 { width: 3px; height: 3px; background: transparent; animation: animStar 150s linear infinite; }
+
+        /* 星星的生成 (使用 box-shadow 模擬隨機座標) 
+           為了不規則感，這裡生成了大量的隨機座標點 */
+        .stars-1 {
+            box-shadow: 
+                120px 500px #FFF, 500px 200px #FFF, 800px 100px #FFF, 1200px 900px #FFF, 
+                1500px 300px #FFF, 300px 800px #FFF, 600px 400px #FFF, 900px 600px #FFF,
+                1800px 200px #FFF, 400px 100px #FFF, 1000px 300px #FFF, 150px 800px #FFF,
+                1700px 600px #FFF, 200px 200px #FFF, 1100px 500px #FFF, 1600px 100px #FFF,
+                650px 750px #FFF, 1300px 400px #FFF, 1900px 850px #FFF, 50px 350px #FFF,
+                750px 150px #FFF, 1400px 650px #FFF, 250px 550px #FFF, 950px 950px #FFF,
+                1650px 450px #FFF, 550px 50px #FFF, 1250px 250px #FFF, 850px 700px #FFF,
+                150px 950px #FFF, 1950px 150px #FFF, 450px 650px #FFF, 1150px 850px #FFF,
+                1750px 350px #FFF, 350px 50px #FFF, 1050px 550px #FFF, 1550px 900px #FFF,
+                220px 420px #FFF, 720px 820px #FFF, 1320px 120px #FFF, 1820px 720px #FFF,
+                90px 290px #FFF, 590px 690px #FFF, 1090px 190px #FFF, 1590px 590px #FFF;
+        }
+
+        .stars-2 {
+            box-shadow: 
+                200px 400px #00d2ff, 600px 100px #FFF, 900px 800px #00d2ff, 1300px 300px #FFF,
+                1700px 700px #FFF, 400px 200px #00d2ff, 800px 600px #FFF, 1100px 900px #00d2ff,
+                1500px 500px #FFF, 100px 800px #FFF, 500px 400px #00d2ff, 1000px 200px #FFF,
+                1400px 100px #FFF, 300px 600px #00d2ff, 700px 900px #FFF, 1200px 500px #00d2ff,
+                1600px 300px #FFF, 250px 150px #FFF, 650px 550px #00d2ff, 1150px 750px #FFF,
+                1550px 250px #00d2ff, 50px 650px #FFF, 550px 850px #00d2ff, 950px 350px #FFF;
+        }
+
+        .stars-3 {
+            box-shadow: 
+                300px 200px #FFF, 800px 700px #00d2ff, 1400px 400px #FFF, 100px 500px #00d2ff,
+                1800px 100px #FFF, 600px 900px #00d2ff, 1100px 300px #FFF, 1600px 800px #00d2ff,
+                500px 100px #FFF, 1200px 600px #00d2ff, 200px 800px #FFF, 900px 400px #00d2ff;
+        }
+
+        /* 星星移動動畫 */
+        @keyframes animStar {
+            from { transform: translateY(0px); }
+            to { transform: translateY(-2000px); } /* 向上移動產生飛行感 */
+        }
+
+        /* 為了讓動畫無縫循環，我們使用 ::after 複製一份相同的星空接在後面 */
+        .stars-1::after, .stars-2::after, .stars-3::after {
+            content: " ";
+            position: absolute;
+            top: 2000px; /* 接在原本的星空下方 */
+            width: inherit; height: inherit; background: inherit; box-shadow: inherit;
+        }
+
+        /* =========================================
+           一般網頁樣式
+           ========================================= */
 
         a { text-decoration: none; color: inherit; transition: 0.3s; }
         
@@ -37,12 +108,13 @@
             padding: 20px;
         }
 
-        /* --- Hero 區塊 (首頁頭部) --- */
+        /* Header 透明度與漸層 */
         header {
             text-align: center;
             padding: 100px 20px 80px;
-            background: radial-gradient(circle at center, #1a202c 0%, var(--bg) 70%);
-            border-bottom: 1px solid #222;
+            background: radial-gradient(circle at top, rgba(0, 210, 255, 0.1) 0%, transparent 60%);
+            border-bottom: none;
+            position: relative;
         }
 
         .status-badge {
@@ -61,15 +133,15 @@
         }
 
         @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(0, 255, 195, 0.4); }
-            70% { box-shadow: 0 0 0 10px rgba(0, 255, 195, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(0, 255, 195, 0); }
+            0% { box-shadow: 0 0 0 0 rgba(0, 210, 255, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(0, 210, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 210, 255, 0); }
         }
 
         h1 {
             font-size: 3.5rem;
             margin: 10px 0;
-            background: linear-gradient(to right, #fff, #b2dfdb);
+            background: linear-gradient(to right, #fff, #81e6ff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             font-weight: 800;
@@ -82,7 +154,7 @@
             margin: 0 auto 40px;
         }
 
-        /* --- 按鈕組 --- */
+        /* 按鈕 */
         .btn-group {
             display: flex;
             justify-content: center;
@@ -100,12 +172,13 @@
             gap: 8px;
             position: relative;
             overflow: hidden;
+            z-index: 10; /* 確保按鈕可以點擊 */
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, var(--primary), #00b894);
+            background: linear-gradient(135deg, var(--primary), #0099ff);
             color: #000;
-            box-shadow: 0 4px 15px rgba(0, 255, 195, 0.3);
+            box-shadow: 0 4px 15px rgba(0, 210, 255, 0.3);
         }
 
         .btn-secondary {
@@ -115,18 +188,21 @@
         }
 
         .btn:hover { transform: translateY(-3px); }
-        .btn-primary:hover { box-shadow: 0 6px 25px rgba(0, 255, 195, 0.5); }
+        .btn-primary:hover { box-shadow: 0 6px 25px rgba(0, 210, 255, 0.5); }
         .btn-secondary:hover { border-color: #fff; background: rgba(255, 255, 255, 0.1); }
 
-        /* --- 數據統計列 --- */
+        /* 數據列 (毛玻璃效果) */
         .stats-bar {
             display: flex;
             justify-content: space-around;
             flex-wrap: wrap;
-            background: #0f1115;
+            background: rgba(15, 20, 30, 0.6);
+            backdrop-filter: blur(8px);
             padding: 40px 0;
-            border-bottom: 1px solid #222;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
             gap: 20px;
+            position: relative;
+            z-index: 2;
         }
 
         .stat-item { text-align: center; min-width: 150px; }
@@ -144,29 +220,7 @@
             letter-spacing: 1px;
         }
 
-        /* --- 影片區塊 --- */
-        .video-section {
-            padding: 80px 20px;
-            text-align: center;
-        }
-        .video-wrapper {
-            position: relative;
-            padding-bottom: 56.25%;
-            height: 0;
-            overflow: hidden;
-            max-width: 900px;
-            margin: 40px auto 0;
-            border-radius: 12px;
-            border: 2px solid #333;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
-            background: #000;
-        }
-        .video-wrapper iframe {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-        }
-
-        /* --- 標題樣式 --- */
+        /* 卡片與佈局 */
         .section-title {
             text-align: center;
             font-size: 2.2rem;
@@ -184,7 +238,6 @@
             border-radius: 2px;
         }
 
-        /* --- 網格佈局 (特色 & 原因) --- */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -199,40 +252,60 @@
             border: 1px solid #2d3748;
             transition: all 0.3s ease;
             position: relative;
+            backdrop-filter: blur(5px); /* 卡片背景模糊 */
         }
 
         .card:hover {
             transform: translateY(-10px);
             border-color: var(--primary);
-            box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            background: rgba(22, 25, 32, 0.9);
         }
 
         .card-icon { font-size: 2.5rem; margin-bottom: 20px; display: block; }
         .card h3 { color: #fff; margin: 0 0 15px; font-size: 1.4rem; }
         .card p { color: var(--text-muted); margin: 0; font-size: 0.95rem; }
 
-        /* --- FAQ --- */
+        /* FAQ */
         .faq-section { max-width: 800px; margin: 0 auto 100px; }
         .faq-item {
-            background: #1a1d24;
+            background: rgba(26, 29, 36, 0.8);
             padding: 25px;
             border-radius: 12px;
             border-left: 4px solid #444;
             margin-bottom: 20px;
             transition: 0.3s;
         }
-        .faq-item:hover { border-left-color: var(--primary); background: #1f2229; }
+        .faq-item:hover { border-left-color: var(--primary); background: rgba(31, 34, 41, 0.9); }
         .faq-q { color: #fff; font-weight: bold; font-size: 1.1rem; display: block; margin-bottom: 10px; }
         .faq-a { color: var(--text-muted); }
 
-        /* --- Footer --- */
+        /* 影片 */
+        .video-section { padding: 80px 20px; text-align: center; }
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            max-width: 900px;
+            margin: 40px auto 0;
+            border-radius: 12px;
+            border: 2px solid #333;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+            background: #000;
+        }
+        .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+
+        /* Footer */
         footer {
-            background: #050608;
+            background: rgba(5, 6, 8, 0.95);
             border-top: 1px solid #222;
             padding: 60px 20px;
             text-align: center;
             font-size: 0.9rem;
             color: #666;
+            position: relative;
+            z-index: 2;
         }
 
         .tech-stack {
@@ -252,11 +325,7 @@
             color: #aaa;
         }
 
-        .dev-credits {
-            margin-bottom: 30px;
-            line-height: 1.8;
-            color: #888;
-        }
+        .dev-credits { margin-bottom: 30px; line-height: 1.8; color: #888; }
         .dev-credits strong { color: #ddd; }
 
         @media (max-width: 768px) {
@@ -266,6 +335,12 @@
     </style>
 </head>
 <body>
+
+    <div id="star-container">
+        <div class="stars-1"></div>
+        <div class="stars-2"></div>
+        <div class="stars-3"></div>
+    </div>
 
     <header>
         <div class="status-badge">系統狀態：穩定運作中 🟢</div>
@@ -444,4 +519,3 @@
 
 </body>
 </html>
-
