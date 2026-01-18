@@ -31,9 +31,8 @@
         }
 
         /* =========================================
-           🚀 動態深空背景核心代碼 (CSS Parallax Stars)
+           🚀 動態深空背景核心代碼
            ========================================= */
-        
         #star-container {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -42,53 +41,11 @@
             overflow: hidden;
         }
 
-        .stars-1 { width: 1px; height: 1px; background: transparent; animation: animStar 50s linear infinite; }
-        .stars-2 { width: 2px; height: 2px; background: transparent; animation: animStar 100s linear infinite; }
-        .stars-3 { width: 3px; height: 3px; background: transparent; animation: animStar 150s linear infinite; }
-
-        .stars-1 {
-            box-shadow: 
-                120px 500px #FFF, 500px 200px #FFF, 800px 100px #FFF, 1200px 900px #FFF, 
-                1500px 300px #FFF, 300px 800px #FFF, 600px 400px #FFF, 900px 600px #FFF,
-                1800px 200px #FFF, 400px 100px #FFF, 1000px 300px #FFF, 150px 800px #FFF,
-                1700px 600px #FFF, 200px 200px #FFF, 1100px 500px #FFF, 1600px 100px #FFF,
-                650px 750px #FFF, 1300px 400px #FFF, 1900px 850px #FFF, 50px 350px #FFF,
-                750px 150px #FFF, 1400px 650px #FFF, 250px 550px #FFF, 950px 950px #FFF,
-                1650px 450px #FFF, 550px 50px #FFF, 1250px 250px #FFF, 850px 700px #FFF,
-                150px 950px #FFF, 1950px 150px #FFF, 450px 650px #FFF, 1150px 850px #FFF,
-                1750px 350px #FFF, 350px 50px #FFF, 1050px 550px #FFF, 1550px 900px #FFF,
-                220px 420px #FFF, 720px 820px #FFF, 1320px 120px #FFF, 1820px 720px #FFF,
-                90px 290px #FFF, 590px 690px #FFF, 1090px 190px #FFF, 1590px 590px #FFF;
-        }
-
-        .stars-2 {
-            box-shadow: 
-                200px 400px #00d2ff, 600px 100px #FFF, 900px 800px #00d2ff, 1300px 300px #FFF,
-                1700px 700px #FFF, 400px 200px #00d2ff, 800px 600px #FFF, 1100px 900px #00d2ff,
-                1500px 500px #FFF, 100px 800px #FFF, 500px 400px #00d2ff, 1000px 200px #FFF,
-                1400px 100px #FFF, 300px 600px #00d2ff, 700px 900px #FFF, 1200px 500px #00d2ff,
-                1600px 300px #FFF, 250px 150px #FFF, 650px 550px #00d2ff, 1150px 750px #FFF,
-                1550px 250px #00d2ff, 50px 650px #FFF, 550px 850px #00d2ff, 950px 350px #FFF;
-        }
-
-        .stars-3 {
-            box-shadow: 
-                300px 200px #FFF, 800px 700px #00d2ff, 1400px 400px #FFF, 100px 500px #00d2ff,
-                1800px 100px #FFF, 600px 900px #00d2ff, 1100px 300px #FFF, 1600px 800px #00d2ff,
-                500px 100px #FFF, 1200px 600px #00d2ff, 200px 800px #FFF, 900px 400px #00d2ff;
-        }
-
-        @keyframes animStar {
-            from { transform: translateY(0px); }
-            to { transform: translateY(-2000px); }
-        }
-
-        .stars-1::after, .stars-2::after, .stars-3::after {
-            content: " ";
-            position: absolute;
-            top: 2000px;
-            width: inherit; height: inherit; background: inherit; box-shadow: inherit;
-        }
+        .stars-1 { width: 1px; height: 1px; background: transparent; animation: animStar 50s linear infinite; box-shadow: 120px 500px #FFF, 500px 200px #FFF, 800px 100px #FFF, 1200px 900px #FFF, 1500px 300px #FFF, 300px 800px #FFF, 600px 400px #FFF, 900px 600px #FFF, 1800px 200px #FFF, 400px 100px #FFF, 1000px 300px #FFF, 150px 800px #FFF, 1700px 600px #FFF, 200px 200px #FFF, 1100px 500px #FFF, 1600px 100px #FFF, 650px 750px #FFF, 1300px 400px #FFF, 1900px 850px #FFF, 50px 350px #FFF, 750px 150px #FFF, 1400px 650px #FFF, 250px 550px #FFF, 950px 950px #FFF, 1650px 450px #FFF, 550px 50px #FFF, 1250px 250px #FFF, 850px 700px #FFF, 150px 950px #FFF, 1950px 150px #FFF, 450px 650px #FFF, 1150px 850px #FFF, 1750px 350px #FFF, 350px 50px #FFF, 1050px 550px #FFF, 1550px 900px #FFF, 220px 420px #FFF, 720px 820px #FFF, 1320px 120px #FFF, 1820px 720px #FFF, 90px 290px #FFF, 590px 690px #FFF, 1090px 190px #FFF, 1590px 590px #FFF; }
+        .stars-2 { width: 2px; height: 2px; background: transparent; animation: animStar 100s linear infinite; box-shadow: 200px 400px #00d2ff, 600px 100px #FFF, 900px 800px #00d2ff, 1300px 300px #FFF, 1700px 700px #FFF, 400px 200px #00d2ff, 800px 600px #FFF, 1100px 900px #00d2ff, 1500px 500px #FFF, 100px 800px #FFF, 500px 400px #00d2ff, 1000px 200px #FFF, 1400px 100px #FFF, 300px 600px #00d2ff, 700px 900px #FFF, 1200px 500px #00d2ff, 1600px 300px #FFF, 250px 150px #FFF, 650px 550px #00d2ff, 1150px 750px #FFF, 1550px 250px #00d2ff, 50px 650px #FFF, 550px 850px #00d2ff, 950px 350px #FFF; }
+        .stars-3 { width: 3px; height: 3px; background: transparent; animation: animStar 150s linear infinite; box-shadow: 300px 200px #FFF, 800px 700px #00d2ff, 1400px 400px #FFF, 100px 500px #00d2ff, 1800px 100px #FFF, 600px 900px #00d2ff, 1100px 300px #FFF, 1600px 800px #00d2ff, 500px 100px #FFF, 1200px 600px #00d2ff, 200px 800px #FFF, 900px 400px #00d2ff; }
+        .stars-1::after, .stars-2::after, .stars-3::after { content: " "; position: absolute; top: 2000px; width: inherit; height: inherit; background: inherit; box-shadow: inherit; }
+        @keyframes animStar { from { transform: translateY(0px); } to { transform: translateY(-2000px); } }
 
         /* =========================================
            一般網頁樣式
@@ -124,7 +81,6 @@
             box-shadow: var(--accent-glow);
             animation: pulse 2s infinite;
         }
-
         @keyframes pulse {
             0% { box-shadow: 0 0 0 0 rgba(0, 210, 255, 0.4); }
             70% { box-shadow: 0 0 0 10px rgba(0, 210, 255, 0); }
@@ -132,260 +88,145 @@
         }
 
         /* ==========================================
-           ⚡ GLITCH 雜訊文字特效核心代碼 (新增部分)
+           ⚡ ULTIMATE NOISE 終極雜訊特效
            ========================================== 
         */
-        .glitch {
+        .noise-text {
             font-size: 3.5rem;
             font-weight: 800;
             text-transform: uppercase;
             position: relative;
-            text-shadow: 0.05em 0 0 #00fffc, -0.03em -0.04em 0 #fc00ff;
-            animation: glitch 725ms infinite;
             margin: 10px 0;
+            color: transparent; /* 文字本身透明，顯示背景 */
             
-            /* 保持原本的漸層感，但為了雜訊效果，我們混合使用 */
-            background: linear-gradient(to right, #fff, #81e6ff);
+            /* 1. 基礎漸層 + 掃描線雜訊背景 */
+            background-image: 
+                linear-gradient(to right, #fff, #81e6ff),
+                repeating-linear-gradient(0deg, transparent, transparent 2px, #000 3px);
+            background-size: 100% 100%, 100% 4px;
             -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            /* 注意：若要讓故障層(before/after)顯色，主文字必須保留空間，
-               這裡為了效果，我們會讓偽元素負責產生顏色錯位 */
+            background-clip: text;
+
+            /* 2. 應用 SVG 雜訊濾鏡 (在 Body 定義) */
+            filter: url(#noise-filter);
+            
+            /* 3. 故障動畫 */
+            animation: glitch-skew 1s infinite linear alternate-reverse;
         }
 
-        .glitch span {
-            position: absolute;
-            top: 0;
-            left: 0;
-        }
-
-        .glitch::before,
-        .glitch::after {
+        /* 產生重影效果的偽元素 */
+        .noise-text::before,
+        .noise-text::after {
             content: attr(data-text);
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #050810; /* 與背景同色，製造切割感 */
-            -webkit-background-clip: text; /* 確保漸層 */
-            -webkit-text-fill-color: transparent;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: inherit; /* 繼承雜訊背景 */
+            -webkit-background-clip: text;
+            background-clip: text;
             opacity: 0.8;
+            filter: url(#noise-filter);
         }
 
-        .glitch::before {
-            text-shadow: -2px 0 #00d2ff; /* 青色錯位 */
+        /* 青色偏移層 */
+        .noise-text::before {
+            text-shadow: -3px 0 #00d2ff;
             animation: glitch-anim-1 2.5s infinite linear alternate-reverse;
             clip-path: inset(0 0 0 0); 
         }
 
-        .glitch::after {
-            text-shadow: 2px 0 #ff00c1; /* 洋紅色錯位 */
+        /* 洋紅色偏移層 */
+        .noise-text::after {
+            text-shadow: 3px 0 #ff00c1;
             animation: glitch-anim-2 3s infinite linear alternate-reverse;
             clip-path: inset(0 0 0 0); 
         }
 
-        /* 產生隨機切割的動畫關鍵影格 */
+        /* 隨機切割動畫 */
         @keyframes glitch-anim-1 {
-            0% { clip-path: inset(20% 0 80% 0); transform: translate(-2px, 1px); }
-            20% { clip-path: inset(60% 0 10% 0); transform: translate(2px, -1px); }
-            40% { clip-path: inset(40% 0 50% 0); transform: translate(-2px, 2px); }
-            60% { clip-path: inset(80% 0 5% 0); transform: translate(1px, -2px); }
-            80% { clip-path: inset(10% 0 60% 0); transform: translate(-1px, 1px); }
-            100% { clip-path: inset(30% 0 30% 0); transform: translate(2px, -2px); }
+            0% { clip-path: inset(20% 0 80% 0); transform: translate(-4px, 2px); }
+            20% { clip-path: inset(60% 0 10% 0); transform: translate(4px, -2px); }
+            40% { clip-path: inset(40% 0 50% 0); transform: translate(-4px, 4px); }
+            60% { clip-path: inset(80% 0 5% 0); transform: translate(2px, -4px); }
+            80% { clip-path: inset(10% 0 60% 0); transform: translate(-2px, 2px); }
+            100% { clip-path: inset(30% 0 30% 0); transform: translate(4px, -4px); }
         }
 
         @keyframes glitch-anim-2 {
-            0% { clip-path: inset(10% 0 60% 0); transform: translate(2px, -1px); }
-            20% { clip-path: inset(80% 0 5% 0); transform: translate(-2px, 2px); }
-            40% { clip-path: inset(30% 0 20% 0); transform: translate(1px, -2px); }
-            60% { clip-path: inset(15% 0 80% 0); transform: translate(-1px, 1px); }
-            80% { clip-path: inset(55% 0 10% 0); transform: translate(2px, 1px); }
-            100% { clip-path: inset(40% 0 40% 0); transform: translate(-2px, -2px); }
+            0% { clip-path: inset(10% 0 60% 0); transform: translate(4px, -2px); }
+            20% { clip-path: inset(80% 0 5% 0); transform: translate(-4px, 4px); }
+            40% { clip-path: inset(30% 0 20% 0); transform: translate(2px, -4px); }
+            60% { clip-path: inset(15% 0 80% 0); transform: translate(-2px, 2px); }
+            80% { clip-path: inset(55% 0 10% 0); transform: translate(4px, 2px); }
+            100% { clip-path: inset(40% 0 40% 0); transform: translate(-4px, -4px); }
         }
 
-        /* RWD 調整 */
+        /* 文字本體輕微扭曲 */
+        @keyframes glitch-skew {
+            0% { transform: skew(0deg); }
+            20% { transform: skew(-2deg); }
+            40% { transform: skew(2deg); }
+            60% { transform: skew(-1deg); }
+            80% { transform: skew(1deg); }
+            100% { transform: skew(0deg); }
+        }
+
+        /* RWD */
         @media (max-width: 768px) {
-            .glitch { font-size: 2.2rem; }
+            .noise-text { font-size: 2.2rem; }
         }
 
-        /* --- 其他樣式 --- */
-        .subtitle {
-            font-size: 1.25rem;
-            color: var(--text-muted);
-            max-width: 700px;
-            margin: 0 auto 40px;
-        }
-
-        .btn-group {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            padding: 14px 35px;
-            border-radius: 50px;
-            font-weight: bold;
-            font-size: 1rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            position: relative;
-            overflow: hidden;
-            z-index: 10;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary), #0099ff);
-            color: #000;
-            box-shadow: 0 4px 15px rgba(0, 210, 255, 0.3);
-        }
-
-        .btn-secondary {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: #fff;
-        }
-
+        /* --- 其他樣式保持不變 --- */
+        .subtitle { font-size: 1.25rem; color: var(--text-muted); max-width: 700px; margin: 0 auto 40px; }
+        .btn-group { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+        .btn { padding: 14px 35px; border-radius: 50px; font-weight: bold; font-size: 1rem; display: inline-flex; align-items: center; gap: 8px; position: relative; overflow: hidden; z-index: 10; }
+        .btn-primary { background: linear-gradient(135deg, var(--primary), #0099ff); color: #000; box-shadow: 0 4px 15px rgba(0, 210, 255, 0.3); }
+        .btn-secondary { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.2); color: #fff; }
         .btn:hover { transform: translateY(-3px); }
         .btn-primary:hover { box-shadow: 0 6px 25px rgba(0, 210, 255, 0.5); }
         .btn-secondary:hover { border-color: #fff; background: rgba(255, 255, 255, 0.1); }
 
-        .stats-bar {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            background: rgba(15, 20, 30, 0.6);
-            backdrop-filter: blur(8px);
-            padding: 40px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-            gap: 20px;
-            position: relative;
-            z-index: 2;
-        }
-
+        .stats-bar { display: flex; justify-content: space-around; flex-wrap: wrap; background: rgba(15, 20, 30, 0.6); backdrop-filter: blur(8px); padding: 40px 0; border-bottom: 1px solid rgba(255,255,255,0.05); gap: 20px; position: relative; z-index: 2; }
         .stat-item { text-align: center; min-width: 150px; }
-        .stat-number {
-            font-size: 2.8rem;
-            font-weight: 800;
-            color: var(--primary);
-            display: block;
-            line-height: 1.2;
-        }
-        .stat-label {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
+        .stat-number { font-size: 2.8rem; font-weight: 800; color: var(--primary); display: block; line-height: 1.2; }
+        .stat-label { color: var(--text-muted); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
 
-        .section-title {
-            text-align: center;
-            font-size: 2.2rem;
-            margin-bottom: 60px;
-            color: #fff;
-            position: relative;
-        }
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 3px;
-            background: var(--primary);
-            margin: 15px auto 0;
-            border-radius: 2px;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-bottom: 100px;
-        }
-
-        .card {
-            background: var(--card-bg);
-            padding: 35px 30px;
-            border-radius: 16px;
-            border: 1px solid #2d3748;
-            transition: all 0.3s ease;
-            position: relative;
-            backdrop-filter: blur(5px);
-        }
-
-        .card:hover {
-            transform: translateY(-10px);
-            border-color: var(--primary);
-            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
-            background: rgba(22, 25, 32, 0.9);
-        }
-
+        .section-title { text-align: center; font-size: 2.2rem; margin-bottom: 60px; color: #fff; position: relative; }
+        .section-title::after { content: ''; display: block; width: 60px; height: 3px; background: var(--primary); margin: 15px auto 0; border-radius: 2px; }
+        
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-bottom: 100px; }
+        .card { background: var(--card-bg); padding: 35px 30px; border-radius: 16px; border: 1px solid #2d3748; transition: all 0.3s ease; position: relative; backdrop-filter: blur(5px); }
+        .card:hover { transform: translateY(-10px); border-color: var(--primary); box-shadow: 0 10px 40px rgba(0,0,0,0.5); background: rgba(22, 25, 32, 0.9); }
         .card-icon { font-size: 2.5rem; margin-bottom: 20px; display: block; }
         .card h3 { color: #fff; margin: 0 0 15px; font-size: 1.4rem; }
         .card p { color: var(--text-muted); margin: 0; font-size: 0.95rem; }
 
         .faq-section { max-width: 800px; margin: 0 auto 100px; }
-        .faq-item {
-            background: rgba(26, 29, 36, 0.8);
-            padding: 25px;
-            border-radius: 12px;
-            border-left: 4px solid #444;
-            margin-bottom: 20px;
-            transition: 0.3s;
-        }
+        .faq-item { background: rgba(26, 29, 36, 0.8); padding: 25px; border-radius: 12px; border-left: 4px solid #444; margin-bottom: 20px; transition: 0.3s; }
         .faq-item:hover { border-left-color: var(--primary); background: rgba(31, 34, 41, 0.9); }
         .faq-q { color: #fff; font-weight: bold; font-size: 1.1rem; display: block; margin-bottom: 10px; }
         .faq-a { color: var(--text-muted); }
 
         .video-section { padding: 80px 20px; text-align: center; }
-        .video-wrapper {
-            position: relative;
-            padding-bottom: 56.25%;
-            height: 0;
-            overflow: hidden;
-            max-width: 900px;
-            margin: 40px auto 0;
-            border-radius: 12px;
-            border: 2px solid #333;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
-            background: #000;
-        }
+        .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 900px; margin: 40px auto 0; border-radius: 12px; border: 2px solid #333; box-shadow: 0 20px 50px rgba(0,0,0,0.6); background: #000; }
         .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 
-        footer {
-            background: rgba(5, 6, 8, 0.95);
-            border-top: 1px solid #222;
-            padding: 60px 20px;
-            text-align: center;
-            font-size: 0.9rem;
-            color: #666;
-            position: relative;
-            z-index: 2;
-        }
-
-        .tech-stack {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-bottom: 30px;
-            flex-wrap: wrap;
-        }
-
-        .tag {
-            background: #1a1d24;
-            border: 1px solid #333;
-            padding: 4px 12px;
-            border-radius: 6px;
-            font-size: 0.8rem;
-            color: #aaa;
-        }
-
+        footer { background: rgba(5, 6, 8, 0.95); border-top: 1px solid #222; padding: 60px 20px; text-align: center; font-size: 0.9rem; color: #666; position: relative; z-index: 2; }
+        .tech-stack { display: flex; justify-content: center; gap: 10px; margin-bottom: 30px; flex-wrap: wrap; }
+        .tag { background: #1a1d24; border: 1px solid #333; padding: 4px 12px; border-radius: 6px; font-size: 0.8rem; color: #aaa; }
         .dev-credits { margin-bottom: 30px; line-height: 1.8; color: #888; }
         .dev-credits strong { color: #ddd; }
     </style>
 </head>
 <body>
+
+    <svg style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <filter id="noise-filter">
+                <feTurbulence type="fractalNoise" baseFrequency="0.1" numOctaves="3" result="noise" />
+                <feDisplacementMap in="SourceGraphic" in2="noise" scale="5" xChannelSelector="R" yChannelSelector="G" />
+            </filter>
+        </defs>
+    </svg>
 
     <div id="star-container">
         <div class="stars-1"></div>
@@ -396,7 +237,7 @@
     <header>
         <div class="status-badge">系統狀態：穩定運作中 🟢</div>
         
-        <h1 class="glitch" data-text="暐式科技 Weishi Technology">暐式科技 Weishi Technology</h1>
+        <h1 class="noise-text" data-text="暐式科技 Weishi Technology">暐式科技 Weishi Technology</h1>
         
         <p class="subtitle">一款強大且易於使用的 Discord 防炸群機器人，致力於維護您社群的安全。</p>
         
@@ -577,6 +418,7 @@
 
 </body>
 </html>
+
 
 
 
