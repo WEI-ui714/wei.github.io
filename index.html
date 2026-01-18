@@ -31,7 +31,7 @@
         }
 
         /* =========================================
-           🚀 動態深空背景核心代碼
+           🚀 動態深空背景
            ========================================= */
         #star-container {
             position: fixed;
@@ -50,7 +50,6 @@
         /* =========================================
            一般網頁樣式
            ========================================= */
-
         a { text-decoration: none; color: inherit; transition: 0.3s; }
         
         .container {
@@ -88,91 +87,85 @@
         }
 
         /* ==========================================
-           ⚡ ULTIMATE NOISE 終極雜訊特效
+           👾 CYBERPUNK GLITCH 特效 (重度撕裂版)
            ========================================== 
         */
-        .noise-text {
+        .cyber-glitch {
+            position: relative;
             font-size: 3.5rem;
             font-weight: 800;
             text-transform: uppercase;
-            position: relative;
+            color: #fff;
+            letter-spacing: 2px;
             margin: 10px 0;
-            color: transparent; /* 文字本身透明，顯示背景 */
             
-            /* 1. 基礎漸層 + 掃描線雜訊背景 */
-            background-image: 
-                linear-gradient(to right, #fff, #81e6ff),
-                repeating-linear-gradient(0deg, transparent, transparent 2px, #000 3px);
-            background-size: 100% 100%, 100% 4px;
-            -webkit-background-clip: text;
-            background-clip: text;
-
-            /* 2. 應用 SVG 雜訊濾鏡 (在 Body 定義) */
-            filter: url(#noise-filter);
-            
-            /* 3. 故障動畫 */
-            animation: glitch-skew 1s infinite linear alternate-reverse;
+            /* 基礎文字發光 */
+            text-shadow: 0 0 10px rgba(0, 210, 255, 0.5);
         }
 
-        /* 產生重影效果的偽元素 */
-        .noise-text::before,
-        .noise-text::after {
+        /* 創造兩個分身層：一個是紅色偏移，一個是青色偏移 */
+        .cyber-glitch::before,
+        .cyber-glitch::after {
             content: attr(data-text);
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: inherit; /* 繼承雜訊背景 */
-            -webkit-background-clip: text;
-            background-clip: text;
-            opacity: 0.8;
-            filter: url(#noise-filter);
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #050810; /* 背景色與網頁相同，用來遮擋 */
         }
 
-        /* 青色偏移層 */
-        .noise-text::before {
-            text-shadow: -3px 0 #00d2ff;
-            animation: glitch-anim-1 2.5s infinite linear alternate-reverse;
-            clip-path: inset(0 0 0 0); 
+        /* 紅色層：向左偏移，帶有 Clip Path 動畫 */
+        .cyber-glitch::before {
+            left: 2px;
+            text-shadow: -2px 0 #ff0055; /* 紅/洋紅 */
+            clip-path: inset(0 0 0 0);
+            animation: glitch-anim-1 2s infinite linear alternate-reverse;
         }
 
-        /* 洋紅色偏移層 */
-        .noise-text::after {
-            text-shadow: 3px 0 #ff00c1;
-            animation: glitch-anim-2 3s infinite linear alternate-reverse;
-            clip-path: inset(0 0 0 0); 
+        /* 青色層：向右偏移，帶有不同的 Clip Path 動畫 */
+        .cyber-glitch::after {
+            left: -2px;
+            text-shadow: 2px 0 #00d2ff; /* 青/藍 */
+            clip-path: inset(0 0 0 0);
+            animation: glitch-anim-2 2.5s infinite linear alternate-reverse;
         }
 
-        /* 隨機切割動畫 */
+        /* 撕裂動畫 1 (快速隨機切割) */
         @keyframes glitch-anim-1 {
-            0% { clip-path: inset(20% 0 80% 0); transform: translate(-4px, 2px); }
-            20% { clip-path: inset(60% 0 10% 0); transform: translate(4px, -2px); }
-            40% { clip-path: inset(40% 0 50% 0); transform: translate(-4px, 4px); }
-            60% { clip-path: inset(80% 0 5% 0); transform: translate(2px, -4px); }
-            80% { clip-path: inset(10% 0 60% 0); transform: translate(-2px, 2px); }
-            100% { clip-path: inset(30% 0 30% 0); transform: translate(4px, -4px); }
+            0% { clip-path: inset(80% 0 2% 0); transform: translate(-2px, 1px); }
+            5% { clip-path: inset(10% 0 85% 0); transform: translate(2px, -1px); }
+            10% { clip-path: inset(40% 0 45% 0); transform: translate(-2px, 2px); }
+            15% { clip-path: inset(90% 0 5% 0); transform: translate(1px, -2px); }
+            20% { clip-path: inset(20% 0 60% 0); transform: translate(-1px, 1px); }
+            25% { clip-path: inset(60% 0 10% 0); transform: translate(2px, -2px); }
+            30% { clip-path: inset(5% 0 90% 0); transform: translate(-2px, 2px); }
+            35% { clip-path: inset(30% 0 50% 0); transform: translate(1px, -1px); }
+            40% { clip-path: inset(70% 0 10% 0); transform: translate(-1px, 1px); }
+            45% { clip-path: inset(15% 0 70% 0); transform: translate(2px, -2px); }
+            50% { clip-path: inset(50% 0 30% 0); transform: translate(-2px, 2px); }
+            100% { clip-path: inset(0% 0 0% 0); transform: translate(0); } /* 偶爾回歸正常 */
         }
 
+        /* 撕裂動畫 2 (不同的節奏) */
         @keyframes glitch-anim-2 {
-            0% { clip-path: inset(10% 0 60% 0); transform: translate(4px, -2px); }
-            20% { clip-path: inset(80% 0 5% 0); transform: translate(-4px, 4px); }
-            40% { clip-path: inset(30% 0 20% 0); transform: translate(2px, -4px); }
-            60% { clip-path: inset(15% 0 80% 0); transform: translate(-2px, 2px); }
-            80% { clip-path: inset(55% 0 10% 0); transform: translate(4px, 2px); }
-            100% { clip-path: inset(40% 0 40% 0); transform: translate(-4px, -4px); }
-        }
-
-        /* 文字本體輕微扭曲 */
-        @keyframes glitch-skew {
-            0% { transform: skew(0deg); }
-            20% { transform: skew(-2deg); }
-            40% { transform: skew(2deg); }
-            60% { transform: skew(-1deg); }
-            80% { transform: skew(1deg); }
-            100% { transform: skew(0deg); }
+            0% { clip-path: inset(15% 0 70% 0); transform: translate(2px, -1px); }
+            5% { clip-path: inset(70% 0 10% 0); transform: translate(-2px, 2px); }
+            10% { clip-path: inset(20% 0 50% 0); transform: translate(1px, -2px); }
+            15% { clip-path: inset(80% 0 5% 0); transform: translate(-1px, 1px); }
+            20% { clip-path: inset(10% 0 80% 0); transform: translate(2px, -2px); }
+            25% { clip-path: inset(40% 0 20% 0); transform: translate(-2px, 2px); }
+            30% { clip-path: inset(90% 0 2% 0); transform: translate(1px, -1px); }
+            35% { clip-path: inset(5% 0 95% 0); transform: translate(-1px, 1px); }
+            40% { clip-path: inset(60% 0 30% 0); transform: translate(2px, -2px); }
+            45% { clip-path: inset(25% 0 55% 0); transform: translate(-2px, 2px); }
+            50% { clip-path: inset(50% 0 30% 0); transform: translate(2px, -1px); }
+            100% { clip-path: inset(0% 0 0% 0); transform: translate(0); }
         }
 
         /* RWD */
         @media (max-width: 768px) {
-            .noise-text { font-size: 2.2rem; }
+            .cyber-glitch { font-size: 2.2rem; }
         }
 
         /* --- 其他樣式保持不變 --- */
@@ -219,15 +212,6 @@
 </head>
 <body>
 
-    <svg style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-            <filter id="noise-filter">
-                <feTurbulence type="fractalNoise" baseFrequency="0.1" numOctaves="3" result="noise" />
-                <feDisplacementMap in="SourceGraphic" in2="noise" scale="5" xChannelSelector="R" yChannelSelector="G" />
-            </filter>
-        </defs>
-    </svg>
-
     <div id="star-container">
         <div class="stars-1"></div>
         <div class="stars-2"></div>
@@ -237,7 +221,7 @@
     <header>
         <div class="status-badge">系統狀態：穩定運作中 🟢</div>
         
-        <h1 class="noise-text" data-text="暐式科技 Weishi Technology">暐式科技 Weishi Technology</h1>
+        <h1 class="cyber-glitch" data-text="暐式科技 Weishi Technology">暐式科技 Weishi Technology</h1>
         
         <p class="subtitle">一款強大且易於使用的 Discord 防炸群機器人，致力於維護您社群的安全。</p>
         
@@ -418,6 +402,7 @@
 
 </body>
 </html>
+
 
 
 
