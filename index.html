@@ -34,22 +34,18 @@
            🚀 動態深空背景核心代碼 (CSS Parallax Stars)
            ========================================= */
         
-        /* 星空容器：固定在背後，不隨網頁滾動 */
         #star-container {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
             background: linear-gradient(to bottom, #020305 0%, #050810 100%);
-            z-index: -1; /* 確保在內容後方 */
+            z-index: -1;
             overflow: hidden;
         }
 
-        /* 定義三種星星的大小與動畫速度 */
         .stars-1 { width: 1px; height: 1px; background: transparent; animation: animStar 50s linear infinite; }
         .stars-2 { width: 2px; height: 2px; background: transparent; animation: animStar 100s linear infinite; }
         .stars-3 { width: 3px; height: 3px; background: transparent; animation: animStar 150s linear infinite; }
 
-        /* 星星的生成 (使用 box-shadow 模擬隨機座標) 
-           為了不規則感，這裡生成了大量的隨機座標點 */
         .stars-1 {
             box-shadow: 
                 120px 500px #FFF, 500px 200px #FFF, 800px 100px #FFF, 1200px 900px #FFF, 
@@ -82,17 +78,15 @@
                 500px 100px #FFF, 1200px 600px #00d2ff, 200px 800px #FFF, 900px 400px #00d2ff;
         }
 
-        /* 星星移動動畫 */
         @keyframes animStar {
             from { transform: translateY(0px); }
-            to { transform: translateY(-2000px); } /* 向上移動產生飛行感 */
+            to { transform: translateY(-2000px); }
         }
 
-        /* 為了讓動畫無縫循環，我們使用 ::after 複製一份相同的星空接在後面 */
         .stars-1::after, .stars-2::after, .stars-3::after {
             content: " ";
             position: absolute;
-            top: 2000px; /* 接在原本的星空下方 */
+            top: 2000px;
             width: inherit; height: inherit; background: inherit; box-shadow: inherit;
         }
 
@@ -108,7 +102,6 @@
             padding: 20px;
         }
 
-        /* Header 透明度與漸層 */
         header {
             text-align: center;
             padding: 100px 20px 80px;
@@ -138,15 +131,84 @@
             100% { box-shadow: 0 0 0 0 rgba(0, 210, 255, 0); }
         }
 
-        h1 {
+        /* ==========================================
+           ⚡ GLITCH 雜訊文字特效核心代碼 (新增部分)
+           ========================================== 
+        */
+        .glitch {
             font-size: 3.5rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            position: relative;
+            text-shadow: 0.05em 0 0 #00fffc, -0.03em -0.04em 0 #fc00ff;
+            animation: glitch 725ms infinite;
             margin: 10px 0;
+            
+            /* 保持原本的漸層感，但為了雜訊效果，我們混合使用 */
             background: linear-gradient(to right, #fff, #81e6ff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            font-weight: 800;
+            /* 注意：若要讓故障層(before/after)顯色，主文字必須保留空間，
+               這裡為了效果，我們會讓偽元素負責產生顏色錯位 */
         }
 
+        .glitch span {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .glitch::before,
+        .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #050810; /* 與背景同色，製造切割感 */
+            -webkit-background-clip: text; /* 確保漸層 */
+            -webkit-text-fill-color: transparent;
+            opacity: 0.8;
+        }
+
+        .glitch::before {
+            text-shadow: -2px 0 #00d2ff; /* 青色錯位 */
+            animation: glitch-anim-1 2.5s infinite linear alternate-reverse;
+            clip-path: inset(0 0 0 0); 
+        }
+
+        .glitch::after {
+            text-shadow: 2px 0 #ff00c1; /* 洋紅色錯位 */
+            animation: glitch-anim-2 3s infinite linear alternate-reverse;
+            clip-path: inset(0 0 0 0); 
+        }
+
+        /* 產生隨機切割的動畫關鍵影格 */
+        @keyframes glitch-anim-1 {
+            0% { clip-path: inset(20% 0 80% 0); transform: translate(-2px, 1px); }
+            20% { clip-path: inset(60% 0 10% 0); transform: translate(2px, -1px); }
+            40% { clip-path: inset(40% 0 50% 0); transform: translate(-2px, 2px); }
+            60% { clip-path: inset(80% 0 5% 0); transform: translate(1px, -2px); }
+            80% { clip-path: inset(10% 0 60% 0); transform: translate(-1px, 1px); }
+            100% { clip-path: inset(30% 0 30% 0); transform: translate(2px, -2px); }
+        }
+
+        @keyframes glitch-anim-2 {
+            0% { clip-path: inset(10% 0 60% 0); transform: translate(2px, -1px); }
+            20% { clip-path: inset(80% 0 5% 0); transform: translate(-2px, 2px); }
+            40% { clip-path: inset(30% 0 20% 0); transform: translate(1px, -2px); }
+            60% { clip-path: inset(15% 0 80% 0); transform: translate(-1px, 1px); }
+            80% { clip-path: inset(55% 0 10% 0); transform: translate(2px, 1px); }
+            100% { clip-path: inset(40% 0 40% 0); transform: translate(-2px, -2px); }
+        }
+
+        /* RWD 調整 */
+        @media (max-width: 768px) {
+            .glitch { font-size: 2.2rem; }
+        }
+
+        /* --- 其他樣式 --- */
         .subtitle {
             font-size: 1.25rem;
             color: var(--text-muted);
@@ -154,7 +216,6 @@
             margin: 0 auto 40px;
         }
 
-        /* 按鈕 */
         .btn-group {
             display: flex;
             justify-content: center;
@@ -172,7 +233,7 @@
             gap: 8px;
             position: relative;
             overflow: hidden;
-            z-index: 10; /* 確保按鈕可以點擊 */
+            z-index: 10;
         }
 
         .btn-primary {
@@ -191,7 +252,6 @@
         .btn-primary:hover { box-shadow: 0 6px 25px rgba(0, 210, 255, 0.5); }
         .btn-secondary:hover { border-color: #fff; background: rgba(255, 255, 255, 0.1); }
 
-        /* 數據列 (毛玻璃效果) */
         .stats-bar {
             display: flex;
             justify-content: space-around;
@@ -220,7 +280,6 @@
             letter-spacing: 1px;
         }
 
-        /* 卡片與佈局 */
         .section-title {
             text-align: center;
             font-size: 2.2rem;
@@ -252,7 +311,7 @@
             border: 1px solid #2d3748;
             transition: all 0.3s ease;
             position: relative;
-            backdrop-filter: blur(5px); /* 卡片背景模糊 */
+            backdrop-filter: blur(5px);
         }
 
         .card:hover {
@@ -266,7 +325,6 @@
         .card h3 { color: #fff; margin: 0 0 15px; font-size: 1.4rem; }
         .card p { color: var(--text-muted); margin: 0; font-size: 0.95rem; }
 
-        /* FAQ */
         .faq-section { max-width: 800px; margin: 0 auto 100px; }
         .faq-item {
             background: rgba(26, 29, 36, 0.8);
@@ -280,7 +338,6 @@
         .faq-q { color: #fff; font-weight: bold; font-size: 1.1rem; display: block; margin-bottom: 10px; }
         .faq-a { color: var(--text-muted); }
 
-        /* 影片 */
         .video-section { padding: 80px 20px; text-align: center; }
         .video-wrapper {
             position: relative;
@@ -296,7 +353,6 @@
         }
         .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 
-        /* Footer */
         footer {
             background: rgba(5, 6, 8, 0.95);
             border-top: 1px solid #222;
@@ -327,11 +383,6 @@
 
         .dev-credits { margin-bottom: 30px; line-height: 1.8; color: #888; }
         .dev-credits strong { color: #ddd; }
-
-        @media (max-width: 768px) {
-            h1 { font-size: 2.2rem; }
-            .stats-bar { gap: 40px; }
-        }
     </style>
 </head>
 <body>
@@ -344,7 +395,9 @@
 
     <header>
         <div class="status-badge">系統狀態：穩定運作中 🟢</div>
-        <h1>暐式科技 Weishi Technology</h1>
+        
+        <h1 class="glitch" data-text="暐式科技 Weishi Technology">暐式科技 Weishi Technology</h1>
+        
         <p class="subtitle">一款強大且易於使用的 Discord 防炸群機器人，致力於維護您社群的安全。</p>
         
         <div class="btn-group">
@@ -431,7 +484,6 @@
                     <h3>備份數據</h3>
                     <p>無時無刻的備份伺服器的數據真安心。</p>
                 </div>
-                
                 <div class="card">
                     <span class="card-icon">🔍</span>
                     <h3>VirusTotal 智能掃描</h3>
@@ -525,6 +577,7 @@
 
 </body>
 </html>
+
 
 
 
