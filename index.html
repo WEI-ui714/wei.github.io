@@ -75,7 +75,7 @@
         }
 
         /* =========================================
-           🚀 動態深空背景核心代碼 (保留原版)
+           🚀 動態深空背景核心代碼
            ========================================= */
         #star-container {
             position: fixed;
@@ -143,12 +143,9 @@
             margin: 10px 0;
             color: #fff;
             letter-spacing: 2px;
-            
-            /* 基礎混合模式 */
             mix-blend-mode: lighten;
         }
 
-        /* 產生重影與切割的偽元素 */
         .noise-text::before,
         .noise-text::after {
             content: attr(data-text);
@@ -157,7 +154,6 @@
             background: var(--bg); /* 遮罩背景 */
         }
 
-        /* 青色偏移層 (幾何切割) */
         .noise-text::before {
             text-shadow: -2px 0 var(--primary);
             animation: glitch-anim-1 3s infinite linear alternate-reverse;
@@ -165,7 +161,6 @@
             z-index: -1;
         }
 
-        /* 洋紅色偏移層 (幾何切割) */
         .noise-text::after {
             text-shadow: 2px 0 var(--secondary);
             animation: glitch-anim-2 2.5s infinite linear alternate-reverse;
@@ -173,7 +168,6 @@
             z-index: -2;
         }
 
-        /* 幾何切割動畫 - 變得更銳利、方塊感更重 */
         @keyframes glitch-anim-1 {
             0% { clip-path: inset(20% 0 80% 0); transform: translate(-2px, 1px); }
             10% { clip-path: inset(10% 0 30% 0); transform: translate(2px, -1px); }
@@ -204,10 +198,9 @@
 
         .subtitle { font-size: 1.25rem; color: var(--text-muted); max-width: 700px; margin: 0 auto 40px; }
         
-        /* 按鈕幾何雜訊效果 
-        */
+        /* 按鈕幾何雜訊效果 */
         .btn-group { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
-        .btn { padding: 14px 35px; border-radius: 4px; /* 變更為較方正的圓角以配合幾何感 */ font-weight: bold; font-size: 1rem; display: inline-flex; align-items: center; gap: 8px; position: relative; overflow: hidden; z-index: 10; transition: 0.2s; }
+        .btn { padding: 14px 35px; border-radius: 4px; font-weight: bold; font-size: 1rem; display: inline-flex; align-items: center; gap: 8px; position: relative; overflow: hidden; z-index: 10; transition: 0.2s; }
         
         .btn-primary { 
             background: var(--primary); 
@@ -235,12 +228,11 @@
         
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-bottom: 100px; }
         
-        /* 🧊 卡片幾何故障特效 (Geometric Card Glitch) 
-        */
+        /* 🧊 卡片幾何故障特效 */
         .card { 
             background: var(--card-bg); 
             padding: 35px 30px; 
-            border-radius: 2px; /* 方正化 */
+            border-radius: 2px; 
             border: 1px solid #2d3748; 
             transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94); 
             position: relative; 
@@ -248,7 +240,6 @@
             overflow: hidden;
         }
 
-        /* 卡片 Hover 時的幾何錯位動畫 */
         .card:hover { 
             transform: translateY(-5px) scale(1.02); 
             border-color: var(--primary); 
@@ -256,7 +247,6 @@
             background: rgba(22, 25, 32, 0.9);
         }
 
-        /* 裝飾角落 */
         .card::before {
             content: '';
             position: absolute;
@@ -283,7 +273,6 @@
         }
         .card:hover::after { opacity: 1; }
 
-        /* 卡片內容的故障晃動 */
         .card:hover .card-icon, 
         .card:hover h3 {
             animation: text-shudder 0.4s ease-in-out infinite;
@@ -303,7 +292,6 @@
         .faq-item { background: rgba(26, 29, 36, 0.8); padding: 25px; border-radius: 4px; border-left: 4px solid #444; margin-bottom: 20px; transition: 0.3s; position: relative; overflow: hidden; }
         .faq-item:hover { border-left-color: var(--primary); background: rgba(31, 34, 41, 0.9); transform: translateX(10px); }
         
-        /* FAQ Hover 時的掃描光條 */
         .faq-item::after {
             content: '';
             position: absolute;
@@ -329,11 +317,129 @@
 
         .dev-credits { margin-bottom: 30px; line-height: 1.8; color: #888; }
         .dev-credits strong { color: #ddd; }
+
+        /* =========================================
+           📜 法律聲明彈窗 (System Modal)
+           ========================================= */
+        .modal-overlay {
+            display: none; /* 預設隱藏 */
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 10000;
+            backdrop-filter: blur(5px);
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-box {
+            width: 90%;
+            max-width: 800px;
+            max-height: 80vh;
+            background: rgba(15, 20, 25, 0.95);
+            border: 1px solid var(--primary);
+            box-shadow: 0 0 30px rgba(0, 210, 255, 0.15);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            transform: scale(0.95);
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            /* 科技切角效果 */
+            clip-path: polygon(
+                20px 0, 100% 0, 
+                100% calc(100% - 20px), calc(100% - 20px) 100%, 
+                0 100%, 0 20px
+            );
+        }
+
+        .modal-overlay.active .modal-box {
+            transform: scale(1);
+        }
+
+        /* 彈窗標題列 */
+        .modal-header {
+            padding: 20px 30px;
+            border-bottom: 1px solid rgba(0, 210, 255, 0.3);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0, 210, 255, 0.05);
+        }
+
+        .modal-title {
+            color: var(--primary);
+            font-size: 1.2rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .modal-close {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .modal-close:hover {
+            color: var(--secondary);
+            text-shadow: 0 0 10px var(--secondary);
+            transform: rotate(90deg);
+        }
+
+        /* 彈窗內容區 */
+        .modal-content {
+            padding: 30px;
+            overflow-y: auto;
+            color: #ddd;
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+
+        /* 自定義捲軸 */
+        .modal-content::-webkit-scrollbar { width: 8px; }
+        .modal-content::-webkit-scrollbar-track { background: #0a0a0a; }
+        .modal-content::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+        .modal-content::-webkit-scrollbar-thumb:hover { background: var(--primary); }
+
+        /* 內容排版優化 */
+        .modal-content h2 { color: var(--primary); border-bottom: 1px solid #333; padding-bottom: 10px; margin-top: 30px; margin-bottom: 20px; font-size: 1.4rem; }
+        .modal-content h3 { color: #fff; margin-top: 25px; font-size: 1.1rem; }
+        .modal-content ul { padding-left: 20px; color: var(--text-muted); }
+        .modal-content li { margin-bottom: 10px; }
+        .modal-content strong { color: #fff; }
+        .law-divider { border-top: 1px dashed #444; margin: 40px 0; }
+
+        /* Footer 連結樣式 */
+        .legal-link {
+            color: var(--text-muted);
+            text-decoration: underline;
+            text-underline-offset: 4px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: 0.3s;
+            display: inline-block;
+            margin-top: 15px;
+        }
+        .legal-link:hover { color: var(--primary); text-shadow: 0 0 10px var(--primary); }
+
     </style>
 </head>
 <body>
 
-    <!-- SVG Noise Filter Definition -->
     <svg style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg">
         <defs>
             <filter id="noise-filter">
@@ -344,7 +450,6 @@
         </defs>
     </svg>
 
-    <!-- Signal Noise Overlay Layers -->
     <div class="signal-overlay"></div>
     <div class="noise-bg"></div>
     <div class="scanline"></div>
@@ -532,13 +637,135 @@
             <p style="opacity: 0.5; font-size: 0.85rem; border-top: 1px solid #222; padding-top: 20px;">
                 系統名稱：Weishi Defender<br>
                 版本：V2.0 (旗艦版) T-800 MAX<br>
-                © 2025~2026 暐式科技 Weishi Technology. All rights reserved.
+                © 2025~2026 暐式科技 Weishi Technology. All rights reserved.<br>
+                <span class="legal-link" onclick="toggleModal()">📜 服務條款 & 隱私權政策</span>
             </p>
         </div>
     </footer>
 
+    <div id="legalModal" class="modal-overlay" onclick="toggleModal()">
+        <div class="modal-box" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <div class="modal-title">
+                    <span>⚠️</span> SYSTEM_LEGAL_DOCS.TXT
+                </div>
+                <button class="modal-close" onclick="toggleModal()">×</button>
+            </div>
+            <div class="modal-content">
+                <h1>📜 暐式科技 Weishi Defender - 法律聲明文件</h1>
+                
+                <h2>第一部分：服務條款 (Terms of Service)</h2>
+                <p><strong>生效日期：</strong> 2025年 12 月 12 日<br>
+                <strong>開發者：</strong> wayne_69050 暐暐c9c</p>
+
+                <h3>1. 接受條款</h3>
+                <p>當您邀請 Weishi Defender（以下簡稱「本機器人」）進入伺服器或使用其功能時，即代表您同意遵守本服務條款。</p>
+
+                <h3>2. 服務內容</h3>
+                <p>本機器人提供自動化的社群安全防護服務，包含但不限於詐騙關鍵字攔截、惡意連結過濾、黑名單預警及頻道恢復功能。</p>
+
+                <h3>3. 禁止行為 (Prohibited Conduct) ⛔</h3>
+                <p>使用者在使用本服務時，嚴格禁止以下行為：</p>
+                <ul>
+                    <li>利用本機器人進行垃圾訊息 (Spam)、騷擾或釣魚 (Phishing) 等惡意行為。</li>
+                    <li>試圖修改、干擾或未經授權使用本機器人系統。</li>
+                    <li>試圖對本機器人進行逆向工程 (Reverse Engineering)、反編譯或拆解核心代碼。</li>
+                    <li>濫用指令導致機器人運作癱瘓（如惡意洗頻觸發指令）。</li>
+                </ul>
+                <p>若發現上述行為，我們有權在不預先通知的情況下，將該使用者加入全域黑名單並停止提供服務。</p>
+
+                <h3>4. 免責聲明與責任限制 (Limitation of Liability) 🛡️</h3>
+                <ul>
+                    <li><strong>現狀提供 (As-Is)：</strong>本機器人依「如實提供」基礎運作。我們不對其運作的準確性、穩定性或功能完整性提供任何形式的明示或默示保證。</li>
+                    <li><strong>無賠償責任：</strong>若因使用本機器人導致任何形式的損害（例如帳號遭封禁、伺服器資料損失、設定遺失等），暐式科技不負任何法律責任。</li>
+                    <li><strong>誤判風險：</strong>自動化防禦系統可能存在誤判。伺服器管理員應自行承擔啟用自動化處置（如自動踢出、自動刪除訊息）的風險。</li>
+                </ul>
+
+                <h3>5. 條款修改 (Terms Modification) 📝</h3>
+                <ul>
+                    <li>我們保留隨時修改本條款的權利。</li>
+                    <li>重大更動將透過官方 Discord 伺服器或公告通知。</li>
+                    <li>持續使用本機器人即表示您同意修訂後的條款。</li>
+                </ul>
+
+                <div class="law-divider"></div>
+
+                <h2>第二部分：隱私權政策 (Privacy Policy)</h2>
+                <p><strong>生效日期：</strong> 2025年 12 月 12日</p>
+                <p>暐式科技（Weishi Technology）尊重並保護您的隱私。本政策說明 Weishi Defender 如何蒐集、使用及保存您的資料。</p>
+
+                <h3>1. 我們蒐集的資料</h3>
+                <p>為了提供防護功能，本機器人會處理以下資訊：</p>
+                <ul>
+                    <li><strong>使用者 ID (User ID)：</strong>用於識別成員、執行黑名單比對及記錄違規次數 (三振條款)。</li>
+                    <li><strong>訊息內容 (Messages)：</strong>
+                        <ul>
+                            <li>機器人會即時讀取訊息內容以進行 c9c 關鍵字 與 惡意連結 比對。</li>
+                            <li><strong>重要聲明：</strong>我們 <u>不會儲存</u> 您的聊天記錄。訊息僅在記憶體中進行短暫分析，分析完成後即丟棄，除非該訊息被判定為違規（可能會記錄違規內容摘要於日誌中）。</li>
+                        </ul>
+                    </li>
+                    <li><strong>伺服器設定：</strong>我們會儲存您設定的日誌頻道 ID 及防護開關狀態。</li>
+                </ul>
+
+                <h3>2. 資料儲存方式</h3>
+                <p>您的違規統計數據（如攔截次數）會以匿名或 ID 形式儲存於本地資料庫 (weishi_data.json 及 威脅趨勢.txt)。這些資料僅用於功能運作與統計展示，不會用於廣告或出售給第三方。</p>
+
+                <h3>3. 資料刪除權利</h3>
+                <p>如果您希望從我們的黑名單或統計數據中移除您的資料，請加入我們的支援伺服器並聯繫管理員。</p>
+
+                <div class="law-divider"></div>
+
+                <h2>📬 聯絡與回報</h2>
+                <p>
+                    <strong>官方支援伺服器：</strong> <a href="https://discord.gg/7JCYsjVwE4" target="_blank" style="color:var(--primary);">discord.gg/7JCYsjVwE4</a><br>
+                    <strong>漏洞回報：</strong> 請使用指令 <code>/漏洞上報</code><br>
+                    <strong>違規檢舉：</strong> 請使用指令 <code>/使用者黑名單上報</code>
+                </p>
+
+                <br>
+                <p style="text-align:center; color: #666; font-size: 0.8rem;">End of Document // EOF</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 彈窗控制腳本
+        function toggleModal() {
+            const modal = document.getElementById('legalModal');
+            const isClosed = !modal.classList.contains('active');
+            
+            if (isClosed) {
+                // 開啟
+                modal.style.display = 'flex';
+                // 稍微延遲以觸發 CSS transition
+                setTimeout(() => {
+                    modal.classList.add('active');
+                }, 10);
+                document.body.style.overflow = 'hidden'; // 防止背景滾動
+            } else {
+                // 關閉
+                modal.classList.remove('active');
+                setTimeout(() => {
+                    modal.style.display = 'none';
+                }, 300);
+                document.body.style.overflow = 'auto'; // 恢復背景滾動
+            }
+        }
+
+        // ESC 鍵關閉彈窗
+        document.addEventListener('keydown', function(event) {
+            if (event.key === "Escape") {
+                const modal = document.getElementById('legalModal');
+                if (modal.classList.contains('active')) {
+                    toggleModal();
+                }
+            }
+        });
+    </script>
+
 </body>
 </html>
+
 
 
 
