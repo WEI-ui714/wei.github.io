@@ -6,6 +6,8 @@
     <title>暐式科技 Weishi Defender | V2.0 旗艦版</title>
     <meta name="google-site-verification" content="google2c251c92406ff80a.html" />
     
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
         /* --- T-800 核心視覺變數 --- */
         :root {
@@ -31,6 +33,30 @@
             min-height: 100vh;
             position: relative;
         }
+
+        /* =========================================
+           🎯 圖標顏色控制 (新增部分)
+           ========================================= */
+        
+        /* 1. 將所有 Font Awesome 圖標設置為主題藍色，並加上輕微發光 */
+        .fa-solid, .fa-brands, .fas, .fab {
+            color: var(--primary);
+            filter: drop-shadow(0 0 2px rgba(0, 210, 255, 0.5));
+            transition: 0.3s;
+        }
+
+        /* 2. 例外處理：Primary 按鈕內的圖標 */
+        /* 因為主按鈕背景是藍色，文字是黑色，所以圖標也必須是黑色，否則會看不見 */
+        .btn-primary .fa-solid,
+        .btn-primary .fa-brands,
+        .btn-primary .fas {
+            color: #000;
+            filter: none; /* 移除黑色圖標的藍色發光 */
+        }
+        
+        /* 註：狀態欄的綠色勾勾因為 HTML 中有 inline style="color:#00ff00"，
+           所以優先級較高，會保持綠色，這是正確的表現。 */
+
 
         /* =========================================
            📺 全域訊號雜訊 (Signal Noise Overlay)
@@ -85,17 +111,26 @@
             overflow: hidden;
         }
 
-        .stars-1 { width: 1px; height: 1px; background: transparent; animation: animStar 50s linear infinite; box-shadow: 120px 500px #FFF, 500px 200px #FFF, 800px 100px #FFF, 1200px 900px #FFF, 1500px 300px #FFF, 300px 800px #FFF, 600px 400px #FFF, 900px 600px #FFF, 1800px 200px #FFF, 400px 100px #FFF, 1000px 300px #FFF, 150px 800px #FFF, 1700px 600px #FFF, 200px 200px #FFF, 1100px 500px #FFF, 1600px 100px #FFF, 650px 750px #FFF, 1300px 400px #FFF, 1900px 850px #FFF, 50px 350px #FFF, 750px 150px #FFF, 1400px 650px #FFF, 250px 550px #FFF, 950px 950px #FFF, 1650px 450px #FFF, 550px 50px #FFF, 1250px 250px #FFF, 850px 700px #FFF, 150px 950px #FFF, 1950px 150px #FFF, 450px 650px #FFF, 1150px 850px #FFF, 1750px 350px #FFF, 350px 50px #FFF, 1050px 550px #FFF, 1550px 900px #FFF, 220px 420px #FFF, 720px 820px #FFF, 1320px 120px #FFF, 1820px 720px #FFF, 90px 290px #FFF, 590px 690px #FFF, 1090px 190px #FFF, 1590px 590px #FFF; }
-        .stars-2 { width: 2px; height: 2px; background: transparent; animation: animStar 100s linear infinite; box-shadow: 200px 400px #00d2ff, 600px 100px #FFF, 900px 800px #00d2ff, 1300px 300px #FFF, 1700px 700px #FFF, 400px 200px #00d2ff, 800px 600px #FFF, 1100px 900px #00d2ff, 1500px 500px #FFF, 100px 800px #FFF, 500px 400px #00d2ff, 1000px 200px #FFF, 1400px 100px #FFF, 300px 600px #00d2ff, 700px 900px #FFF, 1200px 500px #00d2ff, 1600px 300px #FFF, 250px 150px #FFF, 650px 550px #00d2ff, 1150px 750px #FFF, 1550px 250px #00d2ff, 50px 650px #FFF, 550px 850px #00d2ff, 950px 350px #FFF; }
-        .stars-3 { width: 3px; height: 3px; background: transparent; animation: animStar 150s linear infinite; box-shadow: 300px 200px #FFF, 800px 700px #00d2ff, 1400px 400px #FFF, 100px 500px #00d2ff, 1800px 100px #FFF, 600px 900px #00d2ff, 1100px 300px #FFF, 1600px 800px #00d2ff, 500px 100px #FFF, 1200px 600px #00d2ff, 200px 800px #FFF, 900px 400px #00d2ff; }
-        .stars-1::after, .stars-2::after, .stars-3::after { content: " "; position: absolute; top: 2000px; width: inherit; height: inherit; background: inherit; box-shadow: inherit; }
-        @keyframes animStar { from { transform: translateY(0px); } to { transform: translateY(-2000px); } }
+        .stars-1 { width: 1px; height: 1px; background: transparent;
+            animation: animStar 50s linear infinite; box-shadow: 120px 500px #FFF, 500px 200px #FFF, 800px 100px #FFF, 1200px 900px #FFF, 1500px 300px #FFF, 300px 800px #FFF, 600px 400px #FFF, 900px 600px #FFF, 1800px 200px #FFF, 400px 100px #FFF, 1000px 300px #FFF, 150px 800px #FFF, 1700px 600px #FFF, 200px 200px #FFF, 1100px 500px #FFF, 1600px 100px #FFF, 650px 750px #FFF, 1300px 400px #FFF, 1900px 850px #FFF, 50px 350px #FFF, 750px 150px #FFF, 1400px 650px #FFF, 250px 550px #FFF, 950px 950px #FFF, 1650px 450px #FFF, 550px 50px #FFF, 1250px 250px #FFF, 850px 700px #FFF, 150px 950px #FFF, 1950px 150px #FFF, 450px 650px #FFF, 1150px 850px #FFF, 1750px 350px #FFF, 350px 50px #FFF, 1050px 550px #FFF, 1550px 900px #FFF, 220px 420px #FFF, 720px 820px #FFF, 1320px 120px #FFF, 1820px 720px #FFF, 90px 290px #FFF, 590px 690px #FFF, 1090px 190px #FFF, 1590px 590px #FFF;
+        }
+        .stars-2 { width: 2px; height: 2px; background: transparent;
+            animation: animStar 100s linear infinite; box-shadow: 200px 400px #00d2ff, 600px 100px #FFF, 900px 800px #00d2ff, 1300px 300px #FFF, 1700px 700px #FFF, 400px 200px #00d2ff, 800px 600px #FFF, 1100px 900px #00d2ff, 1500px 500px #FFF, 100px 800px #FFF, 500px 400px #00d2ff, 1000px 200px #FFF, 1400px 100px #FFF, 300px 600px #00d2ff, 700px 900px #FFF, 1200px 500px #00d2ff, 1600px 300px #FFF, 250px 150px #FFF, 650px 550px #00d2ff, 1150px 750px #FFF, 1550px 250px #00d2ff, 50px 650px #FFF, 550px 850px #00d2ff, 950px 350px #FFF;
+        }
+        .stars-3 { width: 3px; height: 3px; background: transparent;
+            animation: animStar 150s linear infinite; box-shadow: 300px 200px #FFF, 800px 700px #00d2ff, 1400px 400px #FFF, 100px 500px #00d2ff, 1800px 100px #FFF, 600px 900px #00d2ff, 1100px 300px #FFF, 1600px 800px #00d2ff, 500px 100px #FFF, 1200px 600px #00d2ff, 200px 800px #FFF, 900px 400px #00d2ff;
+        }
+        .stars-1::after, .stars-2::after, .stars-3::after { content: " "; position: absolute; top: 2000px;
+            width: inherit; height: inherit; background: inherit; box-shadow: inherit; }
+        @keyframes animStar { from { transform: translateY(0px);
+        } to { transform: translateY(-2000px); } }
 
         /* =========================================
            一般網頁樣式
            ========================================= */
 
-        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        a { text-decoration: none;
+            color: inherit; transition: 0.3s; }
         
         .container {
             max-width: 1100px;
@@ -151,7 +186,8 @@
             content: attr(data-text);
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: var(--bg); /* 遮罩背景 */
+            background: var(--bg);
+            /* 遮罩背景 */
         }
 
         .noise-text::before {
@@ -196,17 +232,22 @@
             .noise-text { font-size: 2.2rem; }
         }
 
-        .subtitle { font-size: 1.25rem; color: var(--text-muted); max-width: 700px; margin: 0 auto 40px; }
+        .subtitle { font-size: 1.25rem;
+            color: var(--text-muted); max-width: 700px; margin: 0 auto 40px; }
         
         /* 按鈕幾何雜訊效果 */
-        .btn-group { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
-        .btn { padding: 14px 35px; border-radius: 4px; font-weight: bold; font-size: 1rem; display: inline-flex; align-items: center; gap: 8px; position: relative; overflow: hidden; z-index: 10; transition: 0.2s; }
+        .btn-group { display: flex;
+            justify-content: center; gap: 20px; flex-wrap: wrap; }
+        .btn { padding: 14px 35px;
+            border-radius: 4px; font-weight: bold; font-size: 1rem; display: inline-flex; align-items: center; gap: 8px; position: relative; overflow: hidden; z-index: 10; transition: 0.2s;
+        }
         
         .btn-primary { 
-            background: var(--primary); 
+            background: var(--primary);
             color: #000; 
-            box-shadow: 0 4px 15px rgba(0, 210, 255, 0.3); 
-            clip-path: polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0 30%); /* 幾何切角 */
+            box-shadow: 0 4px 15px rgba(0, 210, 255, 0.3);
+            clip-path: polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0 30%);
+            /* 幾何切角 */
         }
         .btn-primary:hover {
             transform: translateY(-3px);
@@ -214,34 +255,46 @@
             box-shadow: 0 0 20px var(--primary);
         }
 
-        .btn-secondary { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.2); color: #fff; clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
-        .btn-secondary:hover { border-color: var(--primary); color: var(--primary); background: rgba(0, 210, 255, 0.1); }
+        .btn-secondary { background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2); color: #fff; clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+        }
+        .btn-secondary:hover { border-color: var(--primary); color: var(--primary); background: rgba(0, 210, 255, 0.1);
+        }
 
 
-        .stats-bar { display: flex; justify-content: space-around; flex-wrap: wrap; background: rgba(15, 20, 30, 0.6); backdrop-filter: blur(8px); padding: 40px 0; border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05); gap: 20px; position: relative; z-index: 2; margin-top: 50px;}
+        .stats-bar { display: flex; justify-content: space-around; flex-wrap: wrap;
+            background: rgba(15, 20, 30, 0.6); backdrop-filter: blur(8px); padding: 40px 0; border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05); gap: 20px;
+            position: relative; z-index: 2; margin-top: 50px;}
         .stat-item { text-align: center; min-width: 150px; }
-        .stat-number { font-size: 2.8rem; font-weight: 800; color: var(--primary); display: block; line-height: 1.2; text-shadow: 0 0 10px rgba(0, 210, 255, 0.5); }
-        .stat-label { color: var(--text-muted); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
+        .stat-number { font-size: 2.8rem; font-weight: 800; color: var(--primary); display: block; line-height: 1.2;
+            text-shadow: 0 0 10px rgba(0, 210, 255, 0.5); }
+        .stat-label { color: var(--text-muted);
+            font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
 
-        .section-title { text-align: center; font-size: 2.2rem; margin-bottom: 60px; color: #fff; position: relative; display: inline-block; width: 100%; }
-        .section-title::after { content: ''; display: block; width: 60px; height: 3px; background: var(--primary); margin: 15px auto 0; border-radius: 2px; box-shadow: 0 0 10px var(--primary); }
+        .section-title { text-align: center; font-size: 2.2rem;
+            margin-bottom: 60px; color: #fff; position: relative; display: inline-block; width: 100%;
+        }
+        .section-title::after { content: ''; display: block; width: 60px; height: 3px; background: var(--primary);
+            margin: 15px auto 0; border-radius: 2px; box-shadow: 0 0 10px var(--primary);
+        }
         
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-bottom: 100px; }
+        .grid { display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-bottom: 100px; }
         
         /* 🧊 卡片幾何故障特效 */
         .card { 
-            background: var(--card-bg); 
+            background: var(--card-bg);
             padding: 35px 30px; 
             border-radius: 2px; 
             border: 1px solid #2d3748; 
             transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94); 
             position: relative; 
-            backdrop-filter: blur(5px); 
+            backdrop-filter: blur(5px);
             overflow: hidden;
         }
 
         .card:hover { 
-            transform: translateY(-5px) scale(1.02); 
+            transform: translateY(-5px) scale(1.02);
             border-color: var(--primary); 
             box-shadow: 0 10px 40px rgba(0, 210, 255, 0.1); 
             background: rgba(22, 25, 32, 0.9);
@@ -284,13 +337,21 @@
             75% { transform: translateX(-1px); }
         }
 
-        .card-icon { font-size: 2.5rem; margin-bottom: 20px; display: block; filter: drop-shadow(0 0 5px rgba(255,255,255,0.2)); }
-        .card h3 { color: #fff; margin: 0 0 15px; font-size: 1.4rem; font-weight: 700; letter-spacing: 0.5px; }
-        .card p { color: var(--text-muted); margin: 0; font-size: 0.95rem; }
+        .card-icon { font-size: 2.5rem;
+            margin-bottom: 20px; display: block; filter: drop-shadow(0 0 5px rgba(255,255,255,0.2)); }
+        .card h3 { color: #fff;
+            margin: 0 0 15px; font-size: 1.4rem; font-weight: 700; letter-spacing: 0.5px;
+        }
+        .card p { color: var(--text-muted); margin: 0; font-size: 0.95rem;
+        }
 
-        .faq-section { max-width: 800px; margin: 0 auto 100px; }
-        .faq-item { background: rgba(26, 29, 36, 0.8); padding: 25px; border-radius: 4px; border-left: 4px solid #444; margin-bottom: 20px; transition: 0.3s; position: relative; overflow: hidden; }
-        .faq-item:hover { border-left-color: var(--primary); background: rgba(31, 34, 41, 0.9); transform: translateX(10px); }
+        .faq-section { max-width: 800px; margin: 0 auto 100px;
+        }
+        .faq-item { background: rgba(26, 29, 36, 0.8); padding: 25px; border-radius: 4px;
+            border-left: 4px solid #444; margin-bottom: 20px; transition: 0.3s; position: relative; overflow: hidden;
+        }
+        .faq-item:hover { border-left-color: var(--primary); background: rgba(31, 34, 41, 0.9); transform: translateX(10px);
+        }
         
         .faq-item::after {
             content: '';
@@ -301,28 +362,43 @@
             transform: skewX(-20deg);
             transition: 0.5s;
         }
-        .faq-item:hover::after { left: 150%; transition: 0.5s ease-in-out; }
+        .faq-item:hover::after { left: 150%; transition: 0.5s ease-in-out;
+        }
 
-        .faq-q { color: #fff; font-weight: bold; font-size: 1.1rem; display: block; margin-bottom: 10px; }
-        .faq-a { color: var(--text-muted); }
+        .faq-q { color: #fff; font-weight: bold; font-size: 1.1rem; display: block; margin-bottom: 10px;
+        }
+        .faq-a { color: var(--text-muted);
+        }
 
-        .video-section { padding: 80px 20px; text-align: center; }
-        .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 900px; margin: 40px auto 0; border-radius: 4px; border: 1px solid #333; box-shadow: 0 0 30px rgba(0, 210, 255, 0.1); background: #000; }
-        .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+        .video-section { padding: 80px 20px; text-align: center;
+        }
+        .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 900px;
+            margin: 40px auto 0; border-radius: 4px; border: 1px solid #333; box-shadow: 0 0 30px rgba(0, 210, 255, 0.1); background: #000;
+        }
+        .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%;
+            height: 100%; }
 
-        footer { background: rgba(5, 6, 8, 0.95); border-top: 1px solid #222; padding: 60px 20px; text-align: center; font-size: 0.9rem; color: #666; position: relative; z-index: 2; }
-        .tech-stack { display: flex; justify-content: center; gap: 10px; margin-bottom: 30px; flex-wrap: wrap; }
-        .tag { background: #1a1d24; border: 1px solid #333; padding: 4px 12px; border-radius: 2px; font-size: 0.8rem; color: #aaa; font-family: monospace; }
-        .tag:hover { border-color: var(--primary); color: var(--primary); background: rgba(0, 210, 255, 0.1); cursor: default; }
+        footer { background: rgba(5, 6, 8, 0.95);
+            border-top: 1px solid #222; padding: 60px 20px; text-align: center; font-size: 0.9rem; color: #666; position: relative; z-index: 2;
+        }
+        .tech-stack { display: flex; justify-content: center; gap: 10px; margin-bottom: 30px; flex-wrap: wrap;
+        }
+        .tag { background: #1a1d24; border: 1px solid #333; padding: 4px 12px;
+            border-radius: 2px; font-size: 0.8rem; color: #aaa; font-family: monospace; }
+        .tag:hover { border-color: var(--primary);
+            color: var(--primary); background: rgba(0, 210, 255, 0.1); cursor: default; }
 
-        .dev-credits { margin-bottom: 30px; line-height: 1.8; color: #888; }
-        .dev-credits strong { color: #ddd; }
+        .dev-credits { margin-bottom: 30px;
+            line-height: 1.8; color: #888; }
+        .dev-credits strong { color: #ddd;
+        }
 
         /* =========================================
            📜 法律聲明彈窗 (System Modal)
            ========================================= */
         .modal-overlay {
-            display: none; /* 預設隱藏 */
+            display: none;
+            /* 預設隱藏 */
             position: fixed;
             top: 0; left: 0;
             width: 100%; height: 100%;
@@ -410,18 +486,29 @@
         }
 
         /* 自定義捲軸 */
-        .modal-content::-webkit-scrollbar { width: 8px; }
-        .modal-content::-webkit-scrollbar-track { background: #0a0a0a; }
-        .modal-content::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
-        .modal-content::-webkit-scrollbar-thumb:hover { background: var(--primary); }
+        .modal-content::-webkit-scrollbar { width: 8px;
+        }
+        .modal-content::-webkit-scrollbar-track { background: #0a0a0a;
+        }
+        .modal-content::-webkit-scrollbar-thumb { background: #333; border-radius: 4px;
+        }
+        .modal-content::-webkit-scrollbar-thumb:hover { background: var(--primary);
+        }
 
         /* 內容排版優化 */
-        .modal-content h2 { color: var(--primary); border-bottom: 1px solid #333; padding-bottom: 10px; margin-top: 30px; margin-bottom: 20px; font-size: 1.4rem; }
-        .modal-content h3 { color: #fff; margin-top: 25px; font-size: 1.1rem; }
-        .modal-content ul { padding-left: 20px; color: var(--text-muted); }
-        .modal-content li { margin-bottom: 10px; }
-        .modal-content strong { color: #fff; }
-        .law-divider { border-top: 1px dashed #444; margin: 40px 0; }
+        .modal-content h2 { color: var(--primary);
+            border-bottom: 1px solid #333; padding-bottom: 10px; margin-top: 30px; margin-bottom: 20px; font-size: 1.4rem;
+        }
+        .modal-content h3 { color: #fff; margin-top: 25px; font-size: 1.1rem;
+        }
+        .modal-content ul { padding-left: 20px; color: var(--text-muted);
+        }
+        .modal-content li { margin-bottom: 10px;
+        }
+        .modal-content strong { color: #fff;
+        }
+        .law-divider { border-top: 1px dashed #444; margin: 40px 0;
+        }
 
         /* Footer 連結樣式 */
         .legal-link {
@@ -434,19 +521,22 @@
             display: inline-block;
             margin-top: 15px;
         }
-        .legal-link:hover { color: var(--primary); text-shadow: 0 0 10px var(--primary); }
+        .legal-link:hover { color: var(--primary); text-shadow: 0 0 10px var(--primary);
+        }
 
     </style>
 </head>
 <body>
 
-    <svg style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <svg style="position: absolute; width: 0; height: 0; overflow: hidden;"
+        version="1.1" xmlns="http://www.w3.org/2000/svg">
         <defs>
             <filter id="noise-filter">
                 <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" result="noise" />
                 <feColorMatrix type="saturate" values="0" result="desaturatedNoise"/>
                 <feBlend in="SourceGraphic" in2="desaturatedNoise" mode="overlay" />
             </filter>
+      
         </defs>
     </svg>
 
@@ -461,18 +551,19 @@
     </div>
 
     <header>
-        <div class="status-badge">系統狀態：穩定運作中 🟢</div>
+        <div class="status-badge">系統狀態：穩定運作中 <i class="fas fa-circle-check" style="color:#00ff00"></i></div>
         
         <h1 class="noise-text" data-text="暐式科技 Weishi Technology">暐式科技 Weishi Technology</h1>
-        
+       
         <p class="subtitle">一款強大且易於使用的 Discord 防炸群機器人，致力於維護您社群的安全。</p>
         
         <div class="btn-group">
             <a href="https://discord.com/oauth2/authorize?client_id=1393566473816903713&permissions=8&integration_type=0&scope=bot+applications.commands" class="btn btn-primary" target="_blank">
-                🔗 立即邀請機器人
+                <i class="fas fa-link"></i> 立即邀請機器人
             </a>
             <a href="https://discord.gg/Kr37BwPh9t" class="btn btn-secondary" target="_blank">
-                💬 加入 WRC暐暐共和國 (支援群)
+          
+                <i class="fas fa-comments"></i> 加入 WRC暐暐共和國 (支援群)
             </a>
         </div>
     </header>
@@ -483,6 +574,7 @@
             <span class="stat-label">保護的伺服器</span>
         </div>
         <div class="stat-item">
+          
             <span class="stat-number">50+</span>
             <span class="stat-label">保護的使用者</span>
         </div>
@@ -492,6 +584,7 @@
         </div>
         <div class="stat-item">
             <span class="stat-number">24/7</span>
+           
             <span class="stat-label">在線時間</span>
         </div>
         <div class="stat-item">
@@ -502,9 +595,11 @@
 
     <div class="container">
         <section class="video-section">
-            <h2 class="section-title">▲ 觀看 V2.0 影片介紹</h2>
-            <div class="video-wrapper">
-                <iframe src="https://www.youtube.com/embed/EtOSWGumPDo" title="Weishi Defender Demo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <h2 class="section-title"><i class="fas fa-play-circle"></i> 觀看 V2.0 影片介紹</h2>
+            <div 
+                class="video-wrapper">
+                <iframe src="https://www.youtube.com/embed/EtOSWGumPDo" title="Weishi Defender Demo" frameborder="0" allow="accelerometer;
+                autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
         </section>
 
@@ -512,49 +607,59 @@
             <h2 class="section-title">核心防禦特色</h2>
             <div class="grid">
                 <div class="card">
-                    <span class="card-icon">🤖</span>
+                    <span class="card-icon"><i class="fas fa-robot"></i></span>
+  
                     <h3>炸群機器人防禦</h3>
                     <p>即時偵測並封鎖惡意的 Raid-Bot 帳號，防止大規模的成員加入攻擊。</p>
                 </div>
                 <div class="card">
-                    <span class="card-icon">🔗</span>
+                    <span class="card-icon"><i class="fas fa-link"></i></span>
+      
                     <h3>炸群 Webhook 防禦</h3>
                     <p>監控並攔截濫用 Webhook 進行的垃圾訊息轟炸，保持頻道清潔。</p>
                 </div>
                 <div class="card">
-                    <span class="card-icon">👤</span>
+                    <span class="card-icon"><i class="fas fa-user-secret"></i></span>
+        
                     <h3>SelfBot 防禦</h3>
                     <p>辨識並處理自動化使用者帳號 (Self-Bot) 的惡意行為，預防潛在威脅。</p>
                 </div>
                 <div class="card">
-                    <span class="card-icon">🛡️</span>
+                    <span class="card-icon"><i class="fas fa-shield-virus"></i></span>
+           
                     <h3>User Install 防禦</h3>
                     <p>防止使用者安裝惡意應用程式或腳本，從源頭杜絕安全漏洞。</p>
                 </div>
                 <div class="card">
-                    <span class="card-icon">🎛️</span>
+                    <span class="card-icon"><i class="fas fa-sliders"></i></span>
+               
                     <h3>簡易化的面板</h3>
                     <p>提供直觀的指令與訊息面板，讓您輕鬆管理所有設定，無需複雜操作。</p>
                 </div>
                 <div class="card">
-                    <span class="card-icon">⏰</span>
-                    <h3>24/7 不斷線</h3>
+                    <span class="card-icon"><i class="fas fa-clock"></i></span>
+                    <h3>24/7 
+                    不斷線</h3>
                     <p>全年無休的穩定運行，確保您的伺服器隨時受到保護。</p>
                 </div>
                 <div class="card">
-                    <span class="card-icon">🔄</span>
+                    <span class="card-icon"><i class="fas fa-rotate"></i></span>
                     <h3>恢復頻道</h3>
-                    <p>受夠了被機器人攻擊後恢復秩序的工作? 這裡歡迎您!</p>
+      
+                    <p>受夠了被機器人攻擊後恢復秩序的工作?
+                    這裡歡迎您!</p>
                 </div>
                 <div class="card">
-                    <span class="card-icon">📦</span>
+                    <span class="card-icon"><i class="fas fa-box-archive"></i></span>
                     <h3>備份數據</h3>
                     <p>無時無刻的備份伺服器的數據真安心。</p>
+      
                 </div>
                 <div class="card">
-                    <span class="card-icon">🔍</span>
+                    <span class="card-icon"><i class="fas fa-magnifying-glass-chart"></i></span>
                     <h3>VirusTotal 智能掃描</h3>
                     <p>所有連結與檔案都會即時送到 VirusTotal 資料庫進行掃描，準確攔截病毒威脅。</p>
+         
                 </div>
             </div>
         </section>
@@ -563,33 +668,39 @@
             <h2 class="section-title">為什麼選擇 Weishi Defender?</h2>
             <div class="grid">
                 <div class="card">
-                    <h3>🔐 多層防禦引擎</h3>
+                   
+                    <h3><i class="fas fa-lock"></i> 多層防禦引擎</h3>
                     <p>整合反惡意連結、防詐騙、防炸群與行為分析，專為 Discord 高風險環境設計。</p>
                 </div>
                 <div class="card">
-                    <h3>🤖 T-800 智能模型</h3>
+                    <h3><i class="fas fa-microchip"></i> T-800 智能模型</h3>
                     <p>以行為節奏與上下文推理判斷威脅，不單純依賴關鍵字，大幅降低誤判率。</p>
+ 
                 </div>
                 <div class="card">
-                    <h3>📊 全盤安全掃描</h3>
+                    <h3><i class="fas fa-chart-pie"></i> 全盤安全掃描</h3>
                     <p>一鍵分析伺服器成員、權限結構與風險因子，產生安全指數與風險等級報告。</p>
                 </div>
+           
                 <div class="card">
-                    <h3>🚨 恐慌模式 (Panic Mode)</h3>
+                    <h3><i class="fas fa-triangle-exclamation"></i> 恐慌模式 (Panic Mode)</h3>
                     <p>面對大規模攻擊時，可一鍵鎖定伺服器，自動踢除所有新進成員。</p>
                 </div>
                 <div class="card">
-                    <h3>⚔ 案例與違規記憶</h3>
+                  
+                    <h3><i class="fas fa-gavel"></i> 案例與違規記憶</h3>
                     <p>獨家三振出局懲戒系統，完整記錄違規行為，兼顧教育與威嚇。</p>
                 </div>
                 <div class="card">
-                    <h3>🔄 更新速度</h3>
+                    <h3><i class="fas fa-arrows-rotate"></i> 更新速度</h3>
                     <p>Weishi Defender安全機器人每6個小時更新一次。</p>
+  
                 </div>
                 <div class="card">
-                    <h3>🌐 台灣社群導向</h3>
+                    <h3><i class="fas fa-earth-asia"></i> 台灣社群導向</h3>
                     <p>繁體中文介面、在地詐騙樣態規則庫，為台灣 Discord 社群量身打造。</p>
                 </div>
+          
             </div>
         </section>
 
@@ -599,12 +710,14 @@
                 <span class="faq-q">Q: 暐式科技是免費的嗎？</span>
                 <span class="faq-a">是的，目前 Weishi Defender 的核心防護功能皆為免費提供給所有社群使用。</span>
             </div>
+    
             <div class="faq-item">
                 <span class="faq-q">Q: 如何將 暐式科技 加入我的伺服器？</span>
                 <span class="faq-a">點擊網頁上方的「立即邀請機器人」按鈕，選擇您的伺服器並授權管理員權限即可。</span>
             </div>
             <div class="faq-item">
                 <span class="faq-q">Q: 暐式科技 如何偵測炸群行為？</span>
+          
                 <span class="faq-a">我們採用混合偵測技術，包含每秒訊息頻率監控、大量標註偵測 (Mass Mention)、以及 T-800 模型的行為分析。</span>
             </div>
             <div class="faq-item">
@@ -612,6 +725,7 @@
                 <span class="faq-a">不需要。機器人加入後會自動套用「V2.0 預設防護配置」，您也可以透過指令簡單開關特定功能。</span>
             </div>
             <div class="faq-item">
+   
                 <span class="faq-q">Q: 為什麼選擇暐式科技？</span>
                 <span class="faq-a">我們專注於「低誤判、高響應」，並且擁有針對台灣社群特化的反詐騙與反釣魚資料庫。</span>
             </div>
@@ -621,7 +735,8 @@
     <footer>
         <div class="container">
             <div class="tech-stack">
-                <span class="tag">網頁框架: github</span>
+                <span class="tag">網頁框架: 
+                github</span>
                 <span class="tag">語言: Python</span>
                 <span class="tag">套件: discord.py</span>
             </div>
@@ -629,17 +744,20 @@
             <div class="dev-credits">
                 <p>
                     <strong>機器人開發設定:</strong> WRC_暐暐c9c (官方)<br>
+ 
                     <strong>網頁設計 & 網頁開發:</strong> WRC_暐暐c9c (官方)<br>
                     <strong>機器人開發:</strong> WRC_暐暐c9c (官方) 
                 </p>
             </div>
 
-            <p style="opacity: 0.5; font-size: 0.85rem; border-top: 1px solid #222; padding-top: 20px;">
+            <p style="opacity: 0.5;
+                font-size: 0.85rem; border-top: 1px solid #222; padding-top: 20px;">
                 系統名稱：Weishi Defender<br>
                 版本：V2.0 (旗艦版) T-800 MAX<br>
                 © 2025~2026 暐式科技 Weishi Technology. All rights reserved.<br>
-                <span class="legal-link" onclick="toggleModal()">📜 服務條款 & 隱私權政策</span>
+                <span class="legal-link" onclick="toggleModal()"><i class="fas fa-file-contract"></i> 服務條款 & 隱私權政策</span>
             </p>
+ 
         </div>
     </footer>
 
@@ -647,83 +765,100 @@
         <div class="modal-box" onclick="event.stopPropagation()">
             <div class="modal-header">
                 <div class="modal-title">
-                    <span>⚠️</span> SYSTEM_LEGAL_DOCS.TXT
+                    <span><i class="fas fa-file-lines"></i></span> SYSTEM_LEGAL_DOCS.TXT
                 </div>
+     
                 <button class="modal-close" onclick="toggleModal()">×</button>
             </div>
             <div class="modal-content">
-                <h1>📜 暐式科技 Weishi Defender - 法律聲明文件</h1>
+                <h1><i class="fas fa-scale-balanced"></i> 暐式科技 Weishi Defender - 法律聲明文件</h1>
                 
                 <h2>第一部分：服務條款 (Terms of Service)</h2>
+      
                 <p><strong>生效日期：</strong> 2025年 12 月 12 日<br>
                 <strong>開發者：</strong> wayne_69050 暐暐c9c</p>
 
-                <h3>1. 接受條款</h3>
+                <h3>1.
+                接受條款</h3>
                 <p>當您邀請 Weishi Defender（以下簡稱「本機器人」）進入伺服器或使用其功能時，即代表您同意遵守本服務條款。</p>
 
-                <h3>2. 服務內容</h3>
+                <h3>2.
+                服務內容</h3>
                 <p>本機器人提供自動化的社群安全防護服務，包含但不限於詐騙關鍵字攔截、惡意連結過濾、黑名單預警及頻道恢復功能。</p>
 
-                <h3>3. 禁止行為 (Prohibited Conduct) ⛔</h3>
+                <h3>3.
+                禁止行為 (Prohibited Conduct) <i class="fas fa-ban"></i></h3>
                 <p>使用者在使用本服務時，嚴格禁止以下行為：</p>
                 <ul>
                     <li>利用本機器人進行垃圾訊息 (Spam)、騷擾或釣魚 (Phishing) 等惡意行為。</li>
                     <li>試圖修改、干擾或未經授權使用本機器人系統。</li>
-                    <li>試圖對本機器人進行逆向工程 (Reverse Engineering)、反編譯或拆解核心代碼。</li>
+                    <li>試圖對本機器人進行逆向工程 (Reverse 
+                    Engineering)、反編譯或拆解核心代碼。</li>
                     <li>濫用指令導致機器人運作癱瘓（如惡意洗頻觸發指令）。</li>
                 </ul>
                 <p>若發現上述行為，我們有權在不預先通知的情況下，將該使用者加入全域黑名單並停止提供服務。</p>
 
-                <h3>4. 免責聲明與責任限制 (Limitation of Liability) 🛡️</h3>
+                <h3>4.
+                免責聲明與責任限制 (Limitation of Liability) <i class="fas fa-shield-halved"></i></h3>
                 <ul>
                     <li><strong>現狀提供 (As-Is)：</strong>本機器人依「如實提供」基礎運作。我們不對其運作的準確性、穩定性或功能完整性提供任何形式的明示或默示保證。</li>
                     <li><strong>無賠償責任：</strong>若因使用本機器人導致任何形式的損害（例如帳號遭封禁、伺服器資料損失、設定遺失等），暐式科技不負任何法律責任。</li>
                     <li><strong>誤判風險：</strong>自動化防禦系統可能存在誤判。伺服器管理員應自行承擔啟用自動化處置（如自動踢出、自動刪除訊息）的風險。</li>
                 </ul>
 
-                <h3>5. 條款修改 (Terms Modification) 📝</h3>
+   
+                <h3>5.
+                條款修改 (Terms Modification) <i class="fas fa-pen-to-square"></i></h3>
                 <ul>
                     <li>我們保留隨時修改本條款的權利。</li>
                     <li>重大更動將透過官方 Discord 伺服器或公告通知。</li>
                     <li>持續使用本機器人即表示您同意修訂後的條款。</li>
                 </ul>
 
+   
                 <div class="law-divider"></div>
 
                 <h2>第二部分：隱私權政策 (Privacy Policy)</h2>
                 <p><strong>生效日期：</strong> 2025年 12 月 12日</p>
                 <p>暐式科技（Weishi Technology）尊重並保護您的隱私。本政策說明 Weishi Defender 如何蒐集、使用及保存您的資料。</p>
 
-                <h3>1. 我們蒐集的資料</h3>
+                <h3>1.
+                我們蒐集的資料</h3>
                 <p>為了提供防護功能，本機器人會處理以下資訊：</p>
                 <ul>
                     <li><strong>使用者 ID (User ID)：</strong>用於識別成員、執行黑名單比對及記錄違規次數 (三振條款)。</li>
                     <li><strong>訊息內容 (Messages)：</strong>
+                       
                         <ul>
                             <li>機器人會即時讀取訊息內容以進行 c9c 關鍵字 與 惡意連結 比對。</li>
                             <li><strong>重要聲明：</strong>我們 <u>不會儲存</u> 您的聊天記錄。訊息僅在記憶體中進行短暫分析，分析完成後即丟棄，除非該訊息被判定為違規（可能會記錄違規內容摘要於日誌中）。</li>
                         </ul>
+            
                     </li>
                     <li><strong>伺服器設定：</strong>我們會儲存您設定的日誌頻道 ID 及防護開關狀態。</li>
                 </ul>
 
-                <h3>2. 資料儲存方式</h3>
+                <h3>2.
+                資料儲存方式</h3>
                 <p>您的違規統計數據（如攔截次數）會以匿名或 ID 形式儲存於本地資料庫 (weishi_data.json 及 威脅趨勢.txt)。這些資料僅用於功能運作與統計展示，不會用於廣告或出售給第三方。</p>
 
-                <h3>3. 資料刪除權利</h3>
+                <h3>3.
+                資料刪除權利</h3>
                 <p>如果您希望從我們的黑名單或統計數據中移除您的資料，請加入我們的支援伺服器並聯繫管理員。</p>
 
                 <div class="law-divider"></div>
 
-                <h2>📬 聯絡與回報</h2>
+                <h2><i class="fas fa-envelope"></i> 聯絡與回報</h2>
                 <p>
                     <strong>官方支援伺服器：</strong> <a href="https://discord.gg/3xrTMpEm2c" target="_blank" style="color:var(--primary);">discord.gg/7JCYsjVwE4</a><br>
+          
                     <strong>漏洞回報：</strong> 請使用指令 <code>/漏洞上報</code><br>
                     <strong>違規檢舉：</strong> 請使用指令 <code>/使用者黑名單上報</code>
                 </p>
 
                 <br>
                 <p style="text-align:center; color: #666; font-size: 0.8rem;">End of Document // EOF</p>
+         
             </div>
         </div>
     </div>
@@ -757,6 +892,7 @@
             if (event.key === "Escape") {
                 const modal = document.getElementById('legalModal');
                 if (modal.classList.contains('active')) {
+   
                     toggleModal();
                 }
             }
@@ -765,6 +901,7 @@
 
 </body>
 </html>
+
 
 
 
